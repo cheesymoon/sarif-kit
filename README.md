@@ -21,7 +21,12 @@ copy-paste CI snippet:
 - [yamllint](docs/yamllint.md): parsable output, line and column preserved
 - [codespell](docs/codespell.md): typo and suggested correction per alert
 
-More adapters are planned; see `TOOLS.md` for the ranked target list.
+More adapters are planned.
+
+Here is a pip-audit finding as GitHub renders it, converted by sarif-kit and uploaded
+through `upload-sarif`:
+
+![A pip-audit finding rendered as a GitHub Code Scanning alert](docs/img/pip-audit-alert.jpg)
 
 ## Positioning: how sarif-kit is different
 

@@ -53,6 +53,10 @@ steps:
       category: pip-audit
 ```
 
+## What it looks like
+
+![A pip-audit finding rendered as a GitHub Code Scanning alert](img/pip-audit-alert.jpg)
+
 ## Notes
 
 - Duplicate advisory entries for the same package (OSV sometimes lists one advisory

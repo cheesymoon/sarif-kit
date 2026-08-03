@@ -37,6 +37,10 @@ fail a build. The rule id is the lowercased typo, so the same word in different 
 groups under one rule. When codespell offers several candidate corrections, or a note
 explaining why a word is flagged, the full suggestion text is kept in the alert message.
 
+## What it looks like
+
+![A codespell finding rendered as a GitHub Code Scanning alert](img/codespell-alert.jpg)
+
 ## Full workflow example
 
 ```yaml

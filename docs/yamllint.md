@@ -38,6 +38,10 @@ that is what makes the file links in GitHub's alerts work.
 | error | error |
 | warning | warning |
 
+## What it looks like
+
+![A yamllint finding rendered as a GitHub Code Scanning alert](img/yamllint-alert.jpg)
+
 ## Full workflow example
 
 ```yaml
