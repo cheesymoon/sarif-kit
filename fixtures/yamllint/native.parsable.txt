@@ -1,0 +1,4 @@
+fx/messy.yaml:2:7: [error] too many spaces after colon (colons)
+fx/messy.yaml:4:1: [error] wrong indentation: expected at least 1 (indentation)
+fx/messy.yaml:8:1: [error] duplication of key "key" in mapping (key-duplicates)
+fx/messy.yaml:9:14: [error] trailing spaces (trailing-spaces)

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/app.py"
+                },
+                "region": {
+                  "startColumn": 5,
+                  "startLine": 10
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Found foo"
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "e7ed66652f5df368b403ff3fed3de65854ff32f44449e437d7c7c9ed1419a5a4:0"
+          },
+          "properties": {
+            "security-severity": "7.5"
+          },
+          "ruleId": "R001",
+          "ruleIndex": 0
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://example.com/demo",
+          "name": "demo-tool",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "Using foo is forbidden by policy."
+              },
+              "helpUri": "https://example.com/rules/R001",
+              "id": "R001",
+              "name": "NoFoo",
+              "shortDescription": {
+                "text": "Foo is not allowed"
+              }
+            }
+          ],
+          "version": "1.2.3"
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

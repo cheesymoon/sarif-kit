@@ -1,0 +1,9 @@
+---
+foo:   bar
+list:
+- a
+- b
+empty:
+key: value1
+key: value2
+trailing: "x"   

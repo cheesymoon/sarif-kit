@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# uv / venv
+.venv/
+
+# build
+dist/
+build/
+
+# gate/scratch artifacts
+gate.sarif
+*.sarif.tmp
