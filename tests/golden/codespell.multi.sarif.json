@@ -21,9 +21,9 @@
             "text": "\"seperated\" is a misspelling of \"separated\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "52fb8f5ba7199fc12828e0c087e8c6f6f3d35c568ebdb20d38c22db802b61642:0"
+            "sarifKit/v1": "d127d766ce94346c244efcdfe0f0657aebf177eae3f4827610c85446236df6de:0"
           },
-          "ruleId": "misspelling",
+          "ruleId": "seperated",
           "ruleIndex": 0
         },
         {
@@ -44,10 +44,10 @@
             "text": "\"wich\" is a misspelling of \"which\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "081ff1eb0d86b1d981e76b3d969941469eff72b8c973442e2125120beb5349c2:0"
+            "sarifKit/v1": "e54032e5f8c2ccd9da717beb2a41cb404059e572cf9fca8be2e1b6bcc77caf24:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "wich",
+          "ruleIndex": 1
         },
         {
           "level": "warning",
@@ -67,10 +67,10 @@
             "text": "\"shoud\" is a misspelling of \"should\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "83cb1be7cc9e03cb46011379b5353df1371ec793e2834be9b62c3908dc624e8b:0"
+            "sarifKit/v1": "26a1529c292da9231e55eec7c757cc007b7def432dcadf27a4de2b2db16951b7:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "shoud",
+          "ruleIndex": 2
         },
         {
           "level": "warning",
@@ -90,10 +90,10 @@
             "text": "\"enviroment\" is a misspelling of \"environment\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "5fc71b6bf6c3a749a008b7e090af661cbfe6d5afbc82c6f7aa98c48cdc357710:0"
+            "sarifKit/v1": "7988c78250692743c8ad44917932eb1ad4f361626c7ed4b7af398f312db6fa85:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "enviroment",
+          "ruleIndex": 3
         },
         {
           "level": "warning",
@@ -113,10 +113,10 @@
             "text": "\"procede\" is a misspelling of \"proceed, precede\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "4b4f9e3767a907fc0d3396b64ce370d3d83cb8cbf9ac9efe8fd6546edd8649bf:0"
+            "sarifKit/v1": "1087dad799396b7cb4895da62d0a846c2450eb34d304f4091bb693f9116d3eb2:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "procede",
+          "ruleIndex": 4
         },
         {
           "level": "warning",
@@ -136,10 +136,10 @@
             "text": "\"paramters\" is a misspelling of \"parameters\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "ff38048161122bf1dfe1c3382db78e216794174e77a46db395032f6e40914506:0"
+            "sarifKit/v1": "b45de8b0381f84470bcd1b3b53b71245b58fcdb696df736f31229a1bfe893fa4:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "paramters",
+          "ruleIndex": 5
         },
         {
           "level": "warning",
@@ -159,10 +159,10 @@
             "text": "\"abandonned\" is a misspelling of \"abandoned\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "4500ffe94adb7d365d51a061cb42926e12902c84da08c171f039990f5011b639:0"
+            "sarifKit/v1": "05bbb1866809d406d3e7a83a17d387873f5aad53cffb438eaeddad102ddf04a1:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "abandonned",
+          "ruleIndex": 6
         }
       ],
       "tool": {
@@ -174,10 +174,98 @@
               "defaultConfiguration": {
                 "level": "warning"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
               "helpUri": "https://github.com/codespell-project/codespell",
-              "id": "misspelling",
+              "id": "seperated",
               "shortDescription": {
-                "text": "Possible misspelling"
+                "text": "\"seperated\" should be \"separated\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "wich",
+              "shortDescription": {
+                "text": "\"wich\" should be \"which\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "shoud",
+              "shortDescription": {
+                "text": "\"shoud\" should be \"should\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "enviroment",
+              "shortDescription": {
+                "text": "\"enviroment\" should be \"environment\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "procede",
+              "shortDescription": {
+                "text": "\"procede\" should be \"proceed, precede\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "paramters",
+              "shortDescription": {
+                "text": "\"paramters\" should be \"parameters\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "abandonned",
+              "shortDescription": {
+                "text": "\"abandonned\" should be \"abandoned\""
               }
             }
           ]

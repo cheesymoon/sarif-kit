@@ -493,6 +493,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2021-66>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2021-66"
+              },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2021-66",
               "id": "PYSEC-2021-66",
               "shortDescription": {
@@ -502,6 +506,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2019-217>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2019-217"
               },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2019-217",
               "id": "PYSEC-2019-217",
@@ -513,6 +521,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2024-22195>)",
+                "text": "https://osv.dev/vulnerability/CVE-2024-22195"
+              },
               "helpUri": "https://osv.dev/vulnerability/CVE-2024-22195",
               "id": "CVE-2024-22195",
               "shortDescription": {
@@ -522,6 +534,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2024-34064>)",
+                "text": "https://osv.dev/vulnerability/CVE-2024-34064"
               },
               "helpUri": "https://osv.dev/vulnerability/CVE-2024-34064",
               "id": "CVE-2024-34064",
@@ -533,6 +549,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2024-56326>)",
+                "text": "https://osv.dev/vulnerability/CVE-2024-56326"
+              },
               "helpUri": "https://osv.dev/vulnerability/CVE-2024-56326",
               "id": "CVE-2024-56326",
               "shortDescription": {
@@ -542,6 +562,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2025-27516>)",
+                "text": "https://osv.dev/vulnerability/CVE-2025-27516"
               },
               "helpUri": "https://osv.dev/vulnerability/CVE-2025-27516",
               "id": "CVE-2025-27516",
@@ -553,6 +577,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2018-28>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2018-28"
+              },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2018-28",
               "id": "PYSEC-2018-28",
               "shortDescription": {
@@ -562,6 +590,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2023-74>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2023-74"
               },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2023-74",
               "id": "PYSEC-2023-74",
@@ -573,6 +605,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2024-35195>)",
+                "text": "https://osv.dev/vulnerability/CVE-2024-35195"
+              },
               "helpUri": "https://osv.dev/vulnerability/CVE-2024-35195",
               "id": "CVE-2024-35195",
               "shortDescription": {
@@ -582,6 +618,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2024-47081>)",
+                "text": "https://osv.dev/vulnerability/CVE-2024-47081"
               },
               "helpUri": "https://osv.dev/vulnerability/CVE-2024-47081",
               "id": "CVE-2024-47081",
@@ -593,6 +633,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2026-25645>)",
+                "text": "https://osv.dev/vulnerability/CVE-2026-25645"
+              },
               "helpUri": "https://osv.dev/vulnerability/CVE-2026-25645",
               "id": "CVE-2026-25645",
               "shortDescription": {
@@ -602,6 +646,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2024-60>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2024-60"
               },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2024-60",
               "id": "PYSEC-2024-60",
@@ -613,6 +661,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2026-215>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2026-215"
+              },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2026-215",
               "id": "PYSEC-2026-215",
               "shortDescription": {
@@ -622,6 +674,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2019-133>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2019-133"
               },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2019-133",
               "id": "PYSEC-2019-133",
@@ -633,6 +689,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2019-132>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2019-132"
+              },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2019-132",
               "id": "PYSEC-2019-132",
               "shortDescription": {
@@ -642,6 +702,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2020-148>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2020-148"
               },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2020-148",
               "id": "PYSEC-2020-148",
@@ -653,6 +717,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2023-192>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2023-192"
+              },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2023-192",
               "id": "PYSEC-2023-192",
               "shortDescription": {
@@ -662,6 +730,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2023-212>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2023-212"
               },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2023-212",
               "id": "PYSEC-2023-212",
@@ -673,6 +745,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2023-207>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2023-207"
+              },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2023-207",
               "id": "PYSEC-2023-207",
               "shortDescription": {
@@ -682,6 +758,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2026-141>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2026-141"
               },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2026-141",
               "id": "PYSEC-2026-141",
@@ -693,6 +773,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2024-37891>)",
+                "text": "https://osv.dev/vulnerability/CVE-2024-37891"
+              },
               "helpUri": "https://osv.dev/vulnerability/CVE-2024-37891",
               "id": "CVE-2024-37891",
               "shortDescription": {
@@ -702,6 +786,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2025-50181>)",
+                "text": "https://osv.dev/vulnerability/CVE-2025-50181"
               },
               "helpUri": "https://osv.dev/vulnerability/CVE-2025-50181",
               "id": "CVE-2025-50181",
@@ -713,6 +801,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2025-66471>)",
+                "text": "https://osv.dev/vulnerability/CVE-2025-66471"
+              },
               "helpUri": "https://osv.dev/vulnerability/CVE-2025-66471",
               "id": "CVE-2025-66471",
               "shortDescription": {
@@ -722,6 +814,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/CVE-2026-21441>)",
+                "text": "https://osv.dev/vulnerability/CVE-2026-21441"
               },
               "helpUri": "https://osv.dev/vulnerability/CVE-2026-21441",
               "id": "CVE-2026-21441",

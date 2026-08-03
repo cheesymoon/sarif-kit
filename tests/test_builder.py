@@ -40,6 +40,24 @@ def test_rule_index_links_result_to_rule():
     assert rules[result["ruleIndex"]]["id"] == result["ruleId"]
 
 
+def test_rule_help_rendered_from_description_and_uri():
+    # GitHub's "Rule help" panel reads the help property; helpUri alone leaves it empty.
+    b = SarifBuilder("t")
+    b.add_rule(Rule(id="R1", full_description="Longer text.", help_uri="https://example.com/r1"))
+    b.add_result(Result(rule_id="R1", message="m", location=Location(uri="a.py")))
+    rule = b.build()["runs"][0]["tool"]["driver"]["rules"][0]
+    assert rule["help"]["markdown"] == "Longer text.\n\n[More about this rule](<https://example.com/r1>)"
+    assert rule["help"]["text"] == "Longer text."
+
+
+def test_rule_without_help_material_gets_no_help_block():
+    b = SarifBuilder("t")
+    b.add_rule(Rule(id="R1", short_description="short only"))
+    b.add_result(Result(rule_id="R1", message="m", location=Location(uri="a.py")))
+    rule = b.build()["runs"][0]["tool"]["driver"]["rules"][0]
+    assert "help" not in rule
+
+
 def test_rule_dedup_keeps_first_definition():
     b = SarifBuilder("t")
     b.add_rule(Rule(id="R1", short_description="first"))

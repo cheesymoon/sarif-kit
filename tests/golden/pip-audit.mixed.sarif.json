@@ -33,6 +33,10 @@
               "defaultConfiguration": {
                 "level": "error"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://osv.dev/vulnerability/PYSEC-2026-215>)",
+                "text": "https://osv.dev/vulnerability/PYSEC-2026-215"
+              },
               "helpUri": "https://osv.dev/vulnerability/PYSEC-2026-215",
               "id": "PYSEC-2026-215",
               "shortDescription": {

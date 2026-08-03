@@ -21,9 +21,9 @@
             "text": "\"Recieve\" is a misspelling of \"Receive\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "393fc66d0b3036e30f140e771dc90fda364ea5493a6756d8f81c45464d4a7d17:0"
+            "sarifKit/v1": "c55d6f7f50c303f3f3868387b1034322aa3947d90e83a148e0dcee778d720efa:0"
           },
-          "ruleId": "misspelling",
+          "ruleId": "recieve",
           "ruleIndex": 0
         },
         {
@@ -44,10 +44,10 @@
             "text": "\"paramter\" is a misspelling of \"parameter\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "3f3b3222f7bd0c03f656dc192df665e0a8cac8a7f4dc29d355d0f60848a21ab4:0"
+            "sarifKit/v1": "a996aea03c2d3b4435397a6271398bd4bceeda37086ecc1163304961e8467c3e:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "paramter",
+          "ruleIndex": 1
         },
         {
           "level": "warning",
@@ -67,10 +67,10 @@
             "text": "\"calcuate\" is a misspelling of \"calculate\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "60747925dd762747045f800f41e5418f1e2053b06bf9b44fca6772208de737b9:0"
+            "sarifKit/v1": "666b56b0df28fc62729b4f2876a40f60ae757074a8b4652f479cdceb0e87cb7a:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "calcuate",
+          "ruleIndex": 2
         },
         {
           "level": "warning",
@@ -90,10 +90,10 @@
             "text": "\"lenght\" is a misspelling of \"length\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "fe30e993fbf36c1b52fb6b2cbacb1c75eecb30455cabf81d5874936733923589:0"
+            "sarifKit/v1": "aa6ed71ab9f947be274b46aa3741a50a5cca7ff65574d4d543c08376d0ed0cd9:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "lenght",
+          "ruleIndex": 3
         },
         {
           "level": "warning",
@@ -113,10 +113,10 @@
             "text": "\"proces\" is a misspelling of \"process\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "8566053014a7b6b52c4fff0efebb476451bf77367de86461c7d15fffb4738e3c:0"
+            "sarifKit/v1": "86096d28edcf900e0fb7e621aa6d429a9d605f2bc6111a004f39f6ecc49ced60:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "proces",
+          "ruleIndex": 4
         },
         {
           "level": "warning",
@@ -136,10 +136,10 @@
             "text": "\"paramter\" is a misspelling of \"parameter\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "3f3b3222f7bd0c03f656dc192df665e0a8cac8a7f4dc29d355d0f60848a21ab4:1"
+            "sarifKit/v1": "a996aea03c2d3b4435397a6271398bd4bceeda37086ecc1163304961e8467c3e:1"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "paramter",
+          "ruleIndex": 1
         },
         {
           "level": "warning",
@@ -159,10 +159,10 @@
             "text": "\"Retreive\" is a misspelling of \"Retrieve\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "37171c877ca3280af185bea2ef78c06f30c3f4b21d52d4a5833c50773aad173b:0"
+            "sarifKit/v1": "843357145d076803e3a3f5bd5bd891341a49bd7f6ec24e1b4491468526470f76:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "retreive",
+          "ruleIndex": 5
         },
         {
           "level": "warning",
@@ -182,10 +182,10 @@
             "text": "\"teh\" is a misspelling of \"the\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "e5f51108fe568c307f668481d1b030ea9ad07153f6309476befb7469dd7dcb58:0"
+            "sarifKit/v1": "c165320f82c6cbea94d7133f76e0a302d1456be42e5a716e69ab1cd2d7114041:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "teh",
+          "ruleIndex": 6
         },
         {
           "level": "warning",
@@ -205,10 +205,10 @@
             "text": "\"seperate\" is a misspelling of \"separate\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "eea3e770ea150feb30767924f68c4612f3803bcb2775f9c1a2b0083c026b9e6e:0"
+            "sarifKit/v1": "b647344eda97c0b2c3730560d0b2c22fb0710a6509add3f8af06f2e7ed5bd09c:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "seperate",
+          "ruleIndex": 7
         },
         {
           "level": "warning",
@@ -228,10 +228,10 @@
             "text": "\"lenght\" is a misspelling of \"length\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "fe30e993fbf36c1b52fb6b2cbacb1c75eecb30455cabf81d5874936733923589:1"
+            "sarifKit/v1": "aa6ed71ab9f947be274b46aa3741a50a5cca7ff65574d4d543c08376d0ed0cd9:1"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "lenght",
+          "ruleIndex": 3
         },
         {
           "level": "warning",
@@ -251,10 +251,10 @@
             "text": "\"paramter\" is a misspelling of \"parameter\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "3f3b3222f7bd0c03f656dc192df665e0a8cac8a7f4dc29d355d0f60848a21ab4:2"
+            "sarifKit/v1": "a996aea03c2d3b4435397a6271398bd4bceeda37086ecc1163304961e8467c3e:2"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "paramter",
+          "ruleIndex": 1
         },
         {
           "level": "warning",
@@ -274,10 +274,10 @@
             "text": "\"occured\" is a misspelling of \"occurred\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "8ecb5a35cd9a0f3e41b0e517d9b5fa84d8862af61f9f0eb58037696cd9c99c1a:0"
+            "sarifKit/v1": "e81ff0bd0ee62e954e7577656925835e5f0c1c67c551739871b282f7741cb8f1:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "occured",
+          "ruleIndex": 8
         },
         {
           "level": "warning",
@@ -297,10 +297,10 @@
             "text": "\"lenght\" is a misspelling of \"length\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "fe30e993fbf36c1b52fb6b2cbacb1c75eecb30455cabf81d5874936733923589:2"
+            "sarifKit/v1": "aa6ed71ab9f947be274b46aa3741a50a5cca7ff65574d4d543c08376d0ed0cd9:2"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "lenght",
+          "ruleIndex": 3
         },
         {
           "level": "warning",
@@ -320,10 +320,10 @@
             "text": "\"sucessful\" is a misspelling of \"successful\""
           },
           "partialFingerprints": {
-            "sarifKit/v1": "aa37d6a3ae5466bd6c74403a9f8d6744cffbc69573c5650b7cae4b6320e1a728:0"
+            "sarifKit/v1": "e1252850b18aede72b4ac42849a626653bdfc5040ea25410c77320218562900a:0"
           },
-          "ruleId": "misspelling",
-          "ruleIndex": 0
+          "ruleId": "sucessful",
+          "ruleIndex": 9
         }
       ],
       "tool": {
@@ -335,10 +335,140 @@
               "defaultConfiguration": {
                 "level": "warning"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
               "helpUri": "https://github.com/codespell-project/codespell",
-              "id": "misspelling",
+              "id": "recieve",
               "shortDescription": {
-                "text": "Possible misspelling"
+                "text": "\"recieve\" should be \"Receive\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "paramter",
+              "shortDescription": {
+                "text": "\"paramter\" should be \"parameter\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "calcuate",
+              "shortDescription": {
+                "text": "\"calcuate\" should be \"calculate\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "lenght",
+              "shortDescription": {
+                "text": "\"lenght\" should be \"length\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "proces",
+              "shortDescription": {
+                "text": "\"proces\" should be \"process\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "retreive",
+              "shortDescription": {
+                "text": "\"retreive\" should be \"Retrieve\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "teh",
+              "shortDescription": {
+                "text": "\"teh\" should be \"the\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "seperate",
+              "shortDescription": {
+                "text": "\"seperate\" should be \"separate\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "occured",
+              "shortDescription": {
+                "text": "\"occured\" should be \"occurred\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://github.com/codespell-project/codespell>)",
+                "text": "https://github.com/codespell-project/codespell"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "sucessful",
+              "shortDescription": {
+                "text": "\"sucessful\" should be \"successful\""
               }
             }
           ]

@@ -187,7 +187,25 @@ class SarifBuilder:
             obj["fullDescription"] = {"text": rule.full_description}
         if rule.help_uri:
             obj["helpUri"] = rule.help_uri
+        # GitHub's "Rule help" panel renders the help property, not helpUri, so without
+        # this the panel just says no help is available.
+        help_markdown = self._help_markdown(rule)
+        if help_markdown:
+            obj["help"] = {
+                "text": rule.full_description or rule.help_uri or "",
+                "markdown": help_markdown,
+            }
         return obj
+
+    @staticmethod
+    def _help_markdown(rule: Rule) -> str | None:
+        parts = []
+        if rule.full_description:
+            parts.append(rule.full_description)
+        if rule.help_uri:
+            # Angle brackets keep the link intact for URIs containing parentheses.
+            parts.append(f"[More about this rule](<{rule.help_uri}>)")
+        return "\n\n".join(parts) if parts else None
 
     def _truncate(self, results: list[Result]) -> tuple[list[Result], bool]:
         """Cap results at ``max_results``, keeping the most severe and leaving one slot

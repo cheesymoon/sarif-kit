@@ -1,7 +1,8 @@
 # codespell
 
-Converts codespell's text output into SARIF. Findings show up in GitHub as one alert per
-misspelling with the suggested correction in the message.
+Converts codespell's text output into SARIF. Each distinct typo becomes its own rule, so
+the alert list shows what is actually wrong ("recieve" should be "receive") instead of a
+generic label repeated for every finding.
 
 ## Capture the native output
 
@@ -31,10 +32,10 @@ links resolve.
 
 ## Severity mapping
 
-Everything is reported at SARIF level `warning` under a single rule, `misspelling`.
-Typos are worth fixing but they do not fail a build. When codespell offers several
-candidate corrections, or a note explaining why a word is flagged, the full suggestion
-text is kept in the alert message.
+Everything is reported at SARIF level `warning`; typos are worth fixing but they do not
+fail a build. The rule id is the lowercased typo, so the same word in different casing
+groups under one rule. When codespell offers several candidate corrections, or a note
+explaining why a word is flagged, the full suggestion text is kept in the alert message.
 
 ## Full workflow example
 

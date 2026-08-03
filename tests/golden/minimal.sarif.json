@@ -43,6 +43,10 @@
               "fullDescription": {
                 "text": "Using foo is forbidden by policy."
               },
+              "help": {
+                "markdown": "Using foo is forbidden by policy.\n\n[More about this rule](<https://example.com/rules/R001>)",
+                "text": "Using foo is forbidden by policy."
+              },
               "helpUri": "https://example.com/rules/R001",
               "id": "R001",
               "name": "NoFoo",

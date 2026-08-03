@@ -109,6 +109,10 @@
               "defaultConfiguration": {
                 "level": "warning"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.document-start>)",
+                "text": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.document-start"
+              },
               "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.document-start",
               "id": "document-start",
               "shortDescription": {
@@ -119,6 +123,10 @@
               "defaultConfiguration": {
                 "level": "warning"
               },
+              "help": {
+                "markdown": "[More about this rule](<https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.truthy>)",
+                "text": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.truthy"
+              },
               "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.truthy",
               "id": "truthy",
               "shortDescription": {
@@ -128,6 +136,10 @@
             {
               "defaultConfiguration": {
                 "level": "error"
+              },
+              "help": {
+                "markdown": "[More about this rule](<https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.line-length>)",
+                "text": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.line-length"
               },
               "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.line-length",
               "id": "line-length",

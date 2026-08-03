@@ -218,7 +218,9 @@ def test_yamllint_skips_blank_and_unparseable_lines():
 
 def test_codespell_message_and_location():
     rules, results = codespell.convert(read_fixture("codespell/native.txt"))
-    assert [r.id for r in rules] == ["misspelling"]
+    assert rules[0].id == "recieve"
+    assert rules[0].short_description == '"recieve" should be "Receive"'
+    assert results[0].rule_id == "recieve"
     assert results[0].message == '"Recieve" is a misspelling of "Receive"'
     assert results[0].location.uri == "fx/typos.py"
     assert results[0].location.start_line == 1
@@ -238,7 +240,14 @@ def test_codespell_keeps_a_trailing_reason():
 
 def test_codespell_defaults_to_warning():
     rules, _ = codespell.convert(read_fixture("codespell/native.txt"))
-    assert rules[0].default_level == "warning"
+    assert {r.default_level for r in rules} == {"warning"}
+
+
+def test_codespell_one_rule_per_typo_regardless_of_case():
+    raw = "\n".join(["a.txt:1: Teh ==> The", "b.txt:2: teh ==> the", "b.txt:3: wich ==> which"])
+    rules, results = codespell.convert(raw)
+    assert [r.id for r in rules] == ["teh", "wich"]
+    assert [r.rule_id for r in results] == ["teh", "teh", "wich"]
 
 
 def test_codespell_handles_awkward_paths():
