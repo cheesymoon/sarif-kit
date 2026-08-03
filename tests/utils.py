@@ -2,7 +2,8 @@
 
 ``assert_matches_golden`` compares a built SARIF log to a committed golden JSON file.
 Set ``UPDATE_GOLDEN=1`` to (re)write goldens after an intentional change, then review
-the diff before committing.
+the diff before committing. ``read_fixture`` reads a captured tool output from
+``fixtures/``.
 """
 
 from __future__ import annotations
@@ -12,6 +13,12 @@ import os
 from pathlib import Path
 
 GOLDEN_DIR = Path(__file__).parent / "golden"
+FIXTURE_DIR = Path(__file__).parent.parent / "fixtures"
+
+
+def read_fixture(name: str) -> str:
+    """Read a captured tool output, e.g. ``"yamllint/native.parsable.txt"``."""
+    return (FIXTURE_DIR / name).read_text(encoding="utf-8")
 
 
 def assert_matches_golden(log: dict, name: str) -> None:

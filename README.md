@@ -12,6 +12,17 @@ gives you SARIF you can pass straight to `github/codeql-action/upload-sarif`.
 uvx sarif-kit convert --tool pip-audit -i audit.json -o results.sarif
 ```
 
+## Supported tools
+
+One page per adapter, each with the exact capture command, the severity mapping, and a
+copy-paste CI snippet:
+
+- [pip-audit](docs/pip-audit.md): one alert per advisory, linked to osv.dev
+- [yamllint](docs/yamllint.md): parsable output, line and column preserved
+- [codespell](docs/codespell.md): typo and suggested correction per alert
+
+More adapters are planned; see `TOOLS.md` for the ranked target list.
+
 ## Positioning: how sarif-kit is different
 
 sarif-kit only goes one way: native tool output into SARIF. A few nearby tools sound like
@@ -34,8 +45,9 @@ isn't done.
 Early days. `PLAN.md` has the roadmap and `NOTES.md` has the launch and ground-check notes.
 Apache-2.0, Python 3.11+, managed with `uv`, SARIF 2.1.0 only.
 
-The Step 2 core is done: `src/sarif_kit/` has the SARIF builder, validation against the
-vendored schema, stable fingerprinting, and severity mapping. Adapters come in Step 3.
+The core is done: `src/sarif_kit/` has the SARIF builder, validation against the
+vendored schema, stable fingerprinting, and severity mapping. The first three adapters
+(pip-audit, yamllint, codespell) and a minimal `convert` CLI are in.
 
 ## Development
 
@@ -45,7 +57,7 @@ uv run pytest            # unit + golden + schema-validation tests
 UPDATE_GOLDEN=1 uv run pytest   # refresh golden files after an intentional change
 ```
 
-### Step-2 gate: does it actually upload
+### Upload gate: does it actually upload
 
 A schema-valid file still isn't guaranteed to upload; GitHub applies extra rules of its
 own. This gate runs a real upload:
@@ -55,5 +67,9 @@ own. This gate runs a real upload:
 2. In the Actions tab, pick "Upload gate" and hit "Run workflow".
 3. Under Security > Code scanning, the alert "sarif-kit end-to-end upload gate" should
    show up with a clickable `README.md:1` link.
+
+The same workflow also runs each supported tool against its committed fixture input,
+converts the fresh output with the real CLI, and uploads one SARIF per tool. Check that
+every adapter's alerts show the right title, severity, and file/line link.
 
 To build the gate SARIF locally: `uv run python scripts/gate_minimal_sarif.py gate.sarif`.

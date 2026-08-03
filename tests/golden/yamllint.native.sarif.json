@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/messy.yaml"
+                },
+                "region": {
+                  "startColumn": 7,
+                  "startLine": 2
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "too many spaces after colon"
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "f999d77fe6ed9f5e541ee35f91e2bd07e97e1dae825273f6eca640b89a903942:0"
+          },
+          "ruleId": "colons",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/messy.yaml"
+                },
+                "region": {
+                  "startColumn": 1,
+                  "startLine": 4
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "wrong indentation: expected at least 1"
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "4e86c5ed9d14e3c1f868bc046efe9c798bf97d6fef623472fa9cb2c08aeb096c:0"
+          },
+          "ruleId": "indentation",
+          "ruleIndex": 1
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/messy.yaml"
+                },
+                "region": {
+                  "startColumn": 1,
+                  "startLine": 8
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "duplication of key \"key\" in mapping"
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "f827a0d3d4aa4da9ecc1667354e7dd1362da8d95744e9bc0d773c56dbeaa3c6a:0"
+          },
+          "ruleId": "key-duplicates",
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/messy.yaml"
+                },
+                "region": {
+                  "startColumn": 14,
+                  "startLine": 9
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "trailing spaces"
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "14883bede817c30dc088ea660e327c2bb4dee4e5e8e94a038d4b3f4c6ed89b85:0"
+          },
+          "ruleId": "trailing-spaces",
+          "ruleIndex": 3
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://yamllint.readthedocs.io/",
+          "name": "yamllint",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.colons",
+              "id": "colons",
+              "shortDescription": {
+                "text": "too many spaces after colon"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.indentation",
+              "id": "indentation",
+              "shortDescription": {
+                "text": "wrong indentation: expected at least 1"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.key-duplicates",
+              "id": "key-duplicates",
+              "shortDescription": {
+                "text": "duplication of key \"key\" in mapping"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.trailing-spaces",
+              "id": "trailing-spaces",
+              "shortDescription": {
+                "text": "trailing spaces"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

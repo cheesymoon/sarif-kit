@@ -18,7 +18,7 @@ whether an upload merely validates or actually renders well in the UI:
 
 from __future__ import annotations
 
-import os
+import re
 
 from .fingerprint import FINGERPRINT_KEY, base_fingerprint
 from .models import Location, Result, Rule
@@ -29,6 +29,9 @@ SCHEMA_URI = "https://json.schemastore.org/sarif-2.1.0.json"
 
 #: GitHub Code Scanning rejects uploads with more than this many results per run.
 GITHUB_MAX_RESULTS = 5000
+
+# A Windows drive prefix, after backslashes have been normalized to forward slashes.
+_DRIVE = re.compile(r"^[A-Za-z]:/")
 
 # Ranking for truncation: most severe kept first.
 _LEVEL_RANK = {"error": 0, "warning": 1, "note": 2, "none": 3}
@@ -45,18 +48,23 @@ def normalize_uri(uri: str, src_root: str | None = None) -> str:
     """Return a repo-root-relative, forward-slashed URI.
 
     Absolute paths break GitHub's file linking, so we strip a ``file://`` scheme and, when
-    ``src_root`` is given, make paths under it relative to it. Adapters and the CLI should
-    hand us repo-relative paths or a ``src_root``. An absolute path from outside the repo
-    can't be made meaningfully relative, so it just loses its leading slash.
+    ``src_root`` is given, make paths under it relative to it. That includes Windows
+    drive-letter paths even when the conversion runs on another OS, since output captured
+    on a Windows runner is often converted on Linux. Adapters and the CLI should hand us
+    repo-relative paths or a ``src_root``. An absolute path from outside the repo can't
+    be made meaningfully relative, so it just loses its leading slash or drive prefix.
     """
     uri = uri.replace("\\", "/")
     if uri.startswith("file://"):
         uri = uri[len("file://"):]
-    if src_root and os.path.isabs(uri):
+        # The canonical Windows file URI puts a slash before the drive: file:///C:/repo.
+        if uri.startswith("/") and _DRIVE.match(uri[1:]):
+            uri = uri[1:]
+    if src_root and (uri.startswith("/") or _DRIVE.match(uri)):
         root = src_root.replace("\\", "/").rstrip("/") + "/"
         if uri.startswith(root):
             uri = uri[len(root):]
-    uri = uri.lstrip("/")
+    uri = _DRIVE.sub("", uri.lstrip("/"))
     if uri.startswith("./"):
         uri = uri[2:]
     return uri

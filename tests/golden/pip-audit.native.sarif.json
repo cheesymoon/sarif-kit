@@ -1,0 +1,738 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "jinja2 2.10 is affected by PYSEC-2021-66 (also known as SNYK-PYTHON-JINJA2-1012994, GHSA-g3rq-g295-4j3m, CVE-2020-28493). Fixed in 2.11.3."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "f307fa5d1939dcf7ed58476e288306ffdf93de9b64ece538b7af2f65d1bc8e4d:0"
+          },
+          "ruleId": "PYSEC-2021-66",
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "jinja2 2.10 is affected by PYSEC-2019-217 (also known as GHSA-462w-v97r-4m45, CVE-2019-10906). Fixed in 2.10.1."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "8e633876d5c7ac2a30b48bfb907a04aee3e3fa9d58a6b97a8fdbdf6137591459:0"
+          },
+          "ruleId": "PYSEC-2019-217",
+          "ruleIndex": 1
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "jinja2 2.10 is affected by CVE-2024-22195 (also known as GHSA-h5c8-rqwp-cp95). Fixed in 3.1.3."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "5d24c7ca244bf08b7c9a139a1ae089640bc6aa9fd7acf1e994c0c070f5d21f26:0"
+          },
+          "ruleId": "CVE-2024-22195",
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "jinja2 2.10 is affected by CVE-2024-34064 (also known as GHSA-h75v-3vvj-5mfj). Fixed in 3.1.4."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "506cbf3374aa07a1ad8649d9ed20ec59cc49edc5ab5f0373d28e600d7bdc1f51:0"
+          },
+          "ruleId": "CVE-2024-34064",
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "jinja2 2.10 is affected by CVE-2024-56326 (also known as GHSA-q2x7-8rv6-6q7h). Fixed in 3.1.5."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "8f9e1354ac57b4bc037baccf3ef0405b6fbaa206ba99819e803fe16df9d1cf99:0"
+          },
+          "ruleId": "CVE-2024-56326",
+          "ruleIndex": 4
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "jinja2 2.10 is affected by CVE-2025-27516 (also known as GHSA-cpwx-vrp4-4pq7). Fixed in 3.1.6."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "8f1fdcf0137c4331e6b95d75626937d1b8e7dc6b6410caf49b0f9b94d72a07b9:0"
+          },
+          "ruleId": "CVE-2025-27516",
+          "ruleIndex": 5
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "requests 2.19.0 is affected by PYSEC-2018-28 (also known as CVE-2018-18074, GHSA-x84v-xcm2-53pg). Fixed in 2.20.0."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "3cb19cd4f1d6ac262e89ce5d08e8fc9f28528bc7f5709021db223392498ac676:0"
+          },
+          "ruleId": "PYSEC-2018-28",
+          "ruleIndex": 6
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "requests 2.19.0 is affected by PYSEC-2023-74 (also known as GHSA-j8r2-6x86-q33q, CVE-2023-32681). Fixed in 2.31.0."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "a8c78f6d7a9a81235f97d0cbf72565fdf87e3ee1f7e8c7a4e8e79716d5bd7f67:0"
+          },
+          "ruleId": "PYSEC-2023-74",
+          "ruleIndex": 7
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "requests 2.19.0 is affected by CVE-2024-35195 (also known as GHSA-9wx4-h78v-vm56). Fixed in 2.32.0."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "74a68bf896cffac30fbeef086d775d7bd2a88461ed64a04aa7fa8101fe5c2319:0"
+          },
+          "ruleId": "CVE-2024-35195",
+          "ruleIndex": 8
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "requests 2.19.0 is affected by CVE-2024-47081 (also known as GHSA-9hjg-9r4m-mvj7). Fixed in 2.32.4."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "beb50a9f947719e6e21e099537543a4aee10268f7ef723698bfcfd1e0bd37fb7:0"
+          },
+          "ruleId": "CVE-2024-47081",
+          "ruleIndex": 9
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "requests 2.19.0 is affected by CVE-2026-25645 (also known as GHSA-gc5v-m9x4-r6x2). Fixed in 2.33.0."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "cffd9008a6ff03bd13f0fa8d642f0248eea293056d29932537ae1052048a7566:0"
+          },
+          "ruleId": "CVE-2026-25645",
+          "ruleIndex": 10
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "idna 2.7 is affected by PYSEC-2024-60 (also known as GHSA-jjg7-2v4v-x38h, CVE-2024-3651). Fixed in 3.7."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "7fa9ebfc266045d02c6d7fe15fb8fcd90e5a4a9616ab39a1fc0e3e4857df710c:0"
+          },
+          "ruleId": "PYSEC-2024-60",
+          "ruleIndex": 11
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "idna 2.7 is affected by PYSEC-2026-215 (also known as GHSA-65pc-fj4g-8rjx, CVE-2026-45409). Fixed in 3.15."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "34e9fcb0224739772cd59891760142ef102b800775d597f62c1ff5eec7c590e1:0"
+          },
+          "ruleId": "PYSEC-2026-215",
+          "ruleIndex": 12
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by PYSEC-2019-133 (also known as GHSA-mh33-7rrq-662w, CVE-2019-11324). Fixed in 1.24.2."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "1d49e0d217936fbe23fe952728341faed59c12228747422b1e5515f8cf6c9748:0"
+          },
+          "ruleId": "PYSEC-2019-133",
+          "ruleIndex": 13
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by PYSEC-2019-132 (also known as GHSA-r64q-w8jr-g9qp, CVE-2019-11236). Fixed in 1.24.3."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "ce3c0e12d472943c7de923595915f5ac26931e770ee1addf15889d2562eceab9:0"
+          },
+          "ruleId": "PYSEC-2019-132",
+          "ruleIndex": 14
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by PYSEC-2020-148 (also known as CVE-2020-26137, GHSA-wqvq-5m8c-6g24). Fixed in 1.25.9."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "42cccca32f539075504279004b6686adea791f54a40fdc9622990ab4f8765ffe:0"
+          },
+          "ruleId": "PYSEC-2020-148",
+          "ruleIndex": 15
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by PYSEC-2023-192 (also known as CVE-2023-43804, GHSA-v845-jxx5-vc9f). Fixed in 1.26.17 or 2.0.6."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "4b68f0ac9d33568ffa80971566b46ff7369d5de66da6e4ea4cfa3c957576dbd1:0"
+          },
+          "ruleId": "PYSEC-2023-192",
+          "ruleIndex": 16
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by PYSEC-2023-212 (also known as GHSA-g4mx-q9vg-27p4, CVE-2023-45803). Fixed in 1.26.18 or 2.0.7."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "7a54b5d7943eaee7f419462c6b841795a7c0e3d1a99b48238f622d9a1067675b:0"
+          },
+          "ruleId": "PYSEC-2023-212",
+          "ruleIndex": 17
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by PYSEC-2023-207 (also known as CVE-2018-25091, GHSA-gwvm-45gx-3cf8). Fixed in 1.24.2."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "79defe69ce49786546882eb84523f0d2240c6e725ccb6e474dcf21ecf8fbd94f:0"
+          },
+          "ruleId": "PYSEC-2023-207",
+          "ruleIndex": 18
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by PYSEC-2026-141 (also known as GHSA-qccp-gfcp-xxvc, CVE-2026-44431). Fixed in 2.7.0."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "6bf7d4d46b93ed55266d1694f8c88a6529bc2a4b75485fce6651b46c557228a7:0"
+          },
+          "ruleId": "PYSEC-2026-141",
+          "ruleIndex": 19
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by CVE-2024-37891 (also known as GHSA-34jh-p97f-mpxf). Fixed in 1.26.19 or 2.2.2."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "5202b0f3cb5a3e44181742c30e3e32f50878812da5bd51adbd963636297bac40:0"
+          },
+          "ruleId": "CVE-2024-37891",
+          "ruleIndex": 20
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by CVE-2025-50181 (also known as GHSA-pq67-6m6q-mj2v). Fixed in 2.5.0."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "baf00f9f01592dcfbf7109648ac3653e7c1e87b8314755289e456200a2439854:0"
+          },
+          "ruleId": "CVE-2025-50181",
+          "ruleIndex": 21
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by CVE-2025-66471 (also known as GHSA-2xpw-w6gg-jr37). Fixed in 2.6.0."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "6214c6fc0c28c147eb9384a678138b40d5a1e9c71d011473898b2e0135d1a652:0"
+          },
+          "ruleId": "CVE-2025-66471",
+          "ruleIndex": 22
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "requirements.txt"
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "urllib3 1.23 is affected by CVE-2026-21441 (also known as GHSA-38jv-5279-wg99). Fixed in 2.6.3."
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "e1d2f96a818fccb0ea66ad3f25b75a550fce07f4724b665995e6be0936b63399:0"
+          },
+          "ruleId": "CVE-2026-21441",
+          "ruleIndex": 23
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/pypa/pip-audit",
+          "name": "pip-audit",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2021-66",
+              "id": "PYSEC-2021-66",
+              "shortDescription": {
+                "text": "This affects the package jinja2 from 0.0.0 and before 2.11.3."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2019-217",
+              "id": "PYSEC-2019-217",
+              "shortDescription": {
+                "text": "In Pallets Jinja before 2.10.1, str.format_map allows a sandbox escape."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2024-22195",
+              "id": "CVE-2024-22195",
+              "shortDescription": {
+                "text": "The `xmlattr` filter in affected versions of Jinja accepts keys containing spaces."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2024-34064",
+              "id": "CVE-2024-34064",
+              "shortDescription": {
+                "text": "The `xmlattr` filter in affected versions of Jinja accepts keys containing non-attribute characters."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2024-56326",
+              "id": "CVE-2024-56326",
+              "shortDescription": {
+                "text": "An oversight in how the Jinja sandboxed environment detects calls to `str.format` allows an attacker that controls the content of a template to execute arbitrary Python code."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2025-27516",
+              "id": "CVE-2025-27516",
+              "shortDescription": {
+                "text": "An oversight in how the Jinja sandboxed environment interacts with the `|attr` filter allows an attacker that controls the content of a template to execute arbitrary Python code."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2018-28",
+              "id": "PYSEC-2018-28",
+              "shortDescription": {
+                "text": "The Requests package before 2.20.0 for Python sends an HTTP Authorization header to an http URI upon receiving a same-hostname https-to-http redirect, which makes it easier for remote attackers to discover credentials by sniffing the network."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2023-74",
+              "id": "PYSEC-2023-74",
+              "shortDescription": {
+                "text": "Impact Since Requests v2.3.0, Requests has been vulnerable to potentially leaking `Proxy-Authorization` headers to destination servers, specifically during redirects to an HTTPS origin."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2024-35195",
+              "id": "CVE-2024-35195",
+              "shortDescription": {
+                "text": "When using a `requests.Session`, if the first request to a given origin is made with `verify=False`, TLS certificate verification may remain disabled for all subsequent requests to that origin, even if `verify=True` is explicitly specified later."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2024-47081",
+              "id": "CVE-2024-47081",
+              "shortDescription": {
+                "text": "Impact Due to a URL parsing issue, Requests releases prior to 2.32.4 may leak .netrc credentials to third parties for specific maliciously-crafted URLs."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2026-25645",
+              "id": "CVE-2026-25645",
+              "shortDescription": {
+                "text": "Impact The `requests.utils.extract_zipped_paths()` utility function uses a predictable filename when extracting files from zip archives into the system temporary directory."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2024-60",
+              "id": "PYSEC-2024-60",
+              "shortDescription": {
+                "text": "Impact A specially crafted argument to the `idna.encode()` function could consume significant resources."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2026-215",
+              "id": "PYSEC-2026-215",
+              "shortDescription": {
+                "text": "Internationalized Domain Names in Applications (IDNA) for Python provides support for Internationalized Domain Names in Applications (IDNA) and Unicode IDNA Compatibility Processing."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2019-133",
+              "id": "PYSEC-2019-133",
+              "shortDescription": {
+                "text": "The urllib3 library before 1.24.2 for Python mishandles certain cases where the desired set of CA certificates is different from the OS store of CA certificates, which results in SSL connections succeeding in situations where a verification failure is the correct outcome."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2019-132",
+              "id": "PYSEC-2019-132",
+              "shortDescription": {
+                "text": "In the urllib3 library through 1.24.1 for Python, CRLF injection is possible if the attacker controls the request parameter."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2020-148",
+              "id": "PYSEC-2020-148",
+              "shortDescription": {
+                "text": "urllib3 before 1.25.9 allows CRLF injection if the attacker controls the HTTP request method, as demonstrated by inserting CR and LF control characters in the first argument of putrequest()."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2023-192",
+              "id": "PYSEC-2023-192",
+              "shortDescription": {
+                "text": "urllib3 doesn't treat the `Cookie` HTTP header special or provide any helpers for managing cookies over HTTP, that is the responsibility of the user."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2023-212",
+              "id": "PYSEC-2023-212",
+              "shortDescription": {
+                "text": "urllib3 previously wouldn't remove the HTTP request body when an HTTP redirect response using status 303 \"See Other\" after the request had its method changed from one that could accept a request body (like `POST`) to `GET` as is required by HTTP RFCs."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2023-207",
+              "id": "PYSEC-2023-207",
+              "shortDescription": {
+                "text": "urllib3 before 1.24.2 does not remove the authorization HTTP header when following a cross-origin redirect (i.e., a redirect that differs in host, port, or scheme)."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/PYSEC-2026-141",
+              "id": "PYSEC-2026-141",
+              "shortDescription": {
+                "text": "urllib3 is an HTTP client library for Python."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2024-37891",
+              "id": "CVE-2024-37891",
+              "shortDescription": {
+                "text": "When using urllib3's proxy support with `ProxyManager`, the `Proxy-Authorization` header is only sent to the configured proxy, as expected."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2025-50181",
+              "id": "CVE-2025-50181",
+              "shortDescription": {
+                "text": "urllib3 handles redirects and retries using the same mechanism, which is controlled by the `Retry` object."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2025-66471",
+              "id": "CVE-2025-66471",
+              "shortDescription": {
+                "text": "Impact urllib3's [streaming API](https://urllib3.readthedocs.io/en/2.5.0/advanced-usage.html#streaming-and-i-o) is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once."
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://osv.dev/vulnerability/CVE-2026-21441",
+              "id": "CVE-2026-21441",
+              "shortDescription": {
+                "text": "Impact urllib3's [streaming API](https://urllib3.readthedocs.io/en/2.6.2/advanced-usage.html#streaming-and-i-o) is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once."
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

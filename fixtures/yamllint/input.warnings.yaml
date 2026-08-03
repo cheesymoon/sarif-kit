@@ -1,0 +1,4 @@
+setting: yes
+debug: True
+items: [1, 2, 3]
+description: this is a rather long line that keeps going and going well past the default eighty character limit set by yamllint

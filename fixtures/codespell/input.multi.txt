@@ -1,0 +1,3 @@
+The recipe list is seperated by commas, wich makes parsing easy.
+We shoud also check the enviroment before we procede.
+A missing paramters file is treated as an abandonned run.

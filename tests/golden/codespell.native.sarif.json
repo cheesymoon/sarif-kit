@@ -1,0 +1,350 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"Recieve\" is a misspelling of \"Receive\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "393fc66d0b3036e30f140e771dc90fda364ea5493a6756d8f81c45464d4a7d17:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"paramter\" is a misspelling of \"parameter\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "3f3b3222f7bd0c03f656dc192df665e0a8cac8a7f4dc29d355d0f60848a21ab4:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"calcuate\" is a misspelling of \"calculate\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "60747925dd762747045f800f41e5418f1e2053b06bf9b44fca6772208de737b9:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"lenght\" is a misspelling of \"length\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "fe30e993fbf36c1b52fb6b2cbacb1c75eecb30455cabf81d5874936733923589:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 2
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"proces\" is a misspelling of \"process\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "8566053014a7b6b52c4fff0efebb476451bf77367de86461c7d15fffb4738e3c:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 2
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"paramter\" is a misspelling of \"parameter\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "3f3b3222f7bd0c03f656dc192df665e0a8cac8a7f4dc29d355d0f60848a21ab4:1"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"Retreive\" is a misspelling of \"Retrieve\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "37171c877ca3280af185bea2ef78c06f30c3f4b21d52d4a5833c50773aad173b:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"teh\" is a misspelling of \"the\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "e5f51108fe568c307f668481d1b030ea9ad07153f6309476befb7469dd7dcb58:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"seperate\" is a misspelling of \"separate\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "eea3e770ea150feb30767924f68c4612f3803bcb2775f9c1a2b0083c026b9e6e:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"lenght\" is a misspelling of \"length\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "fe30e993fbf36c1b52fb6b2cbacb1c75eecb30455cabf81d5874936733923589:1"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"paramter\" is a misspelling of \"parameter\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "3f3b3222f7bd0c03f656dc192df665e0a8cac8a7f4dc29d355d0f60848a21ab4:2"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 4
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"occured\" is a misspelling of \"occurred\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "8ecb5a35cd9a0f3e41b0e517d9b5fa84d8862af61f9f0eb58037696cd9c99c1a:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 5
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"lenght\" is a misspelling of \"length\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "fe30e993fbf36c1b52fb6b2cbacb1c75eecb30455cabf81d5874936733923589:2"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/typos.py"
+                },
+                "region": {
+                  "startLine": 5
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"sucessful\" is a misspelling of \"successful\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "aa37d6a3ae5466bd6c74403a9f8d6744cffbc69573c5650b7cae4b6320e1a728:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/codespell-project/codespell",
+          "name": "codespell",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "misspelling",
+              "shortDescription": {
+                "text": "Possible misspelling"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

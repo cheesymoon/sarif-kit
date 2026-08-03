@@ -1,0 +1,7 @@
+fx/notes.txt:1: seperated ==> separated
+fx/notes.txt:1: wich ==> which
+fx/notes.txt:2: shoud ==> should
+fx/notes.txt:2: enviroment ==> environment
+fx/notes.txt:2: procede ==> proceed, precede
+fx/notes.txt:3: paramters ==> parameters
+fx/notes.txt:3: abandonned ==> abandoned

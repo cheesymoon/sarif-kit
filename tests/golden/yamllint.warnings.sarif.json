@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/config.yaml"
+                },
+                "region": {
+                  "startColumn": 1,
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "missing document start \"---\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "687128b2537d2eaef07c668fb6e9e614e6cab6b5020dc241a4781216972897ee:0"
+          },
+          "ruleId": "document-start",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/config.yaml"
+                },
+                "region": {
+                  "startColumn": 10,
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "truthy value should be one of [false, true]"
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "7605a37f56ca4d62ceac969ac8f7127ae015653b2ba35bd965acad67f2bf727f:0"
+          },
+          "ruleId": "truthy",
+          "ruleIndex": 1
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/config.yaml"
+                },
+                "region": {
+                  "startColumn": 8,
+                  "startLine": 2
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "truthy value should be one of [false, true]"
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "7605a37f56ca4d62ceac969ac8f7127ae015653b2ba35bd965acad67f2bf727f:1"
+          },
+          "ruleId": "truthy",
+          "ruleIndex": 1
+        },
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/config.yaml"
+                },
+                "region": {
+                  "startColumn": 81,
+                  "startLine": 4
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "line too long (127 > 80 characters)"
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "1a2df322bc87f0e068acec3c2b9340f45d257b3fa03a364165efd227ced11982:0"
+          },
+          "ruleId": "line-length",
+          "ruleIndex": 2
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://yamllint.readthedocs.io/",
+          "name": "yamllint",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.document-start",
+              "id": "document-start",
+              "shortDescription": {
+                "text": "missing document start \"---\""
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.truthy",
+              "id": "truthy",
+              "shortDescription": {
+                "text": "truthy value should be one of [false, true]"
+              }
+            },
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.line-length",
+              "id": "line-length",
+              "shortDescription": {
+                "text": "line too long (127 > 80 characters)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

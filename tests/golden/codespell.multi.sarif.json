@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/notes.txt"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"seperated\" is a misspelling of \"separated\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "52fb8f5ba7199fc12828e0c087e8c6f6f3d35c568ebdb20d38c22db802b61642:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/notes.txt"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"wich\" is a misspelling of \"which\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "081ff1eb0d86b1d981e76b3d969941469eff72b8c973442e2125120beb5349c2:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/notes.txt"
+                },
+                "region": {
+                  "startLine": 2
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"shoud\" is a misspelling of \"should\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "83cb1be7cc9e03cb46011379b5353df1371ec793e2834be9b62c3908dc624e8b:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/notes.txt"
+                },
+                "region": {
+                  "startLine": 2
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"enviroment\" is a misspelling of \"environment\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "5fc71b6bf6c3a749a008b7e090af661cbfe6d5afbc82c6f7aa98c48cdc357710:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/notes.txt"
+                },
+                "region": {
+                  "startLine": 2
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"procede\" is a misspelling of \"proceed, precede\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "4b4f9e3767a907fc0d3396b64ce370d3d83cb8cbf9ac9efe8fd6546edd8649bf:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/notes.txt"
+                },
+                "region": {
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"paramters\" is a misspelling of \"parameters\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "ff38048161122bf1dfe1c3382db78e216794174e77a46db395032f6e40914506:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        },
+        {
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "fx/notes.txt"
+                },
+                "region": {
+                  "startLine": 3
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "\"abandonned\" is a misspelling of \"abandoned\""
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "4500ffe94adb7d365d51a061cb42926e12902c84da08c171f039990f5011b639:0"
+          },
+          "ruleId": "misspelling",
+          "ruleIndex": 0
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/codespell-project/codespell",
+          "name": "codespell",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://github.com/codespell-project/codespell",
+              "id": "misspelling",
+              "shortDescription": {
+                "text": "Possible misspelling"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

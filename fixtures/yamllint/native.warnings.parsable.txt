@@ -1,0 +1,4 @@
+fx/config.yaml:1:1: [warning] missing document start "---" (document-start)
+fx/config.yaml:1:10: [warning] truthy value should be one of [false, true] (truthy)
+fx/config.yaml:2:8: [warning] truthy value should be one of [false, true] (truthy)
+fx/config.yaml:4:81: [error] line too long (127 > 80 characters) (line-length)

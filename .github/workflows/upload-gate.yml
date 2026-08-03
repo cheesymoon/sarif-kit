@@ -1,7 +1,11 @@
-# Step-2 end-to-end gate: prove that GitHub Code Scanning actually accepts sarif-kit
+# End-to-end gate: prove that GitHub Code Scanning actually accepts sarif-kit
 # output, since a schema-valid file can still be rejected. Run it manually ("Run
 # workflow" in the Actions tab) on a repo with Code Scanning enabled, then look under
 # Security > Code scanning for the alert with a clickable README.md:1 link.
+#
+# The adapters job (Step 3) runs each supported tool against its committed fixture
+# input, converts the fresh output with the real CLI, and uploads one SARIF per tool.
+# Check each alert for the right title, severity, and a working file/line link.
 name: Upload gate
 
 on:
@@ -29,3 +33,44 @@ jobs:
         with:
           sarif_file: gate.sarif
           category: sarif-kit-gate
+
+  adapters:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - tool: pip-audit
+            capture: >
+              uvx pip-audit -r fixtures/pip-audit/input.requirements.txt
+              -f json --disable-pip --no-deps > native.out || true
+            extra: --dep-file fixtures/pip-audit/input.requirements.txt
+          - tool: yamllint
+            capture: uvx yamllint -f parsable fixtures/yamllint/input.yaml > native.out || true
+            extra: ""
+          - tool: codespell
+            capture: uvx codespell fixtures/codespell/input.py > native.out || true
+            extra: ""
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
+        with:
+          python-version: "3.12"
+      - name: Sync
+        run: uv sync
+      # The fixture inputs are dirty on purpose, so a run that produces no output means
+      # the tool itself failed and the || true swallowed it. Refuse to upload that.
+      - name: Run ${{ matrix.tool }} on its fixture input
+        run: |
+          ${{ matrix.capture }}
+          test -s native.out
+      - name: Convert to SARIF
+        run: >
+          uv run sarif-kit convert --tool ${{ matrix.tool }}
+          -i native.out -o results.sarif ${{ matrix.extra }}
+      - name: Upload to Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: results.sarif
+          category: sarif-kit-${{ matrix.tool }}

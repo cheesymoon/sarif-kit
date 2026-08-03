@@ -157,6 +157,18 @@ def test_normalize_uri():
     assert normalize_uri("file:///repo/src/a.py", src_root="/repo") == "src/a.py"
 
 
+def test_normalize_uri_windows_paths():
+    # Output captured on a Windows runner is often converted on Linux, so drive-letter
+    # paths must relativize regardless of the host OS.
+    assert normalize_uri("C:\\repo\\src\\a.py", src_root="C:\\repo") == "src/a.py"
+    assert normalize_uri("C:/repo/src/a.py", src_root="C:/repo") == "src/a.py"
+    # The canonical Windows file URI keeps a slash before the drive.
+    assert normalize_uri("file:///C:/repo/src/a.py", src_root="C:/repo") == "src/a.py"
+    # Outside the root, the drive prefix goes the same way a leading slash does.
+    assert normalize_uri("D:\\elsewhere\\a.py", src_root="C:\\repo") == "elsewhere/a.py"
+    assert normalize_uri("C:\\repo\\a.py") == "repo/a.py"
+
+
 def test_unknown_rule_id_raises():
     b = SarifBuilder("t")
     b.add_result(Result(rule_id="ghost", message="m", location=Location(uri="a.py", start_line=1)))

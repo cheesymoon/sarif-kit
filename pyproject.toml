@@ -11,6 +11,9 @@ dependencies = [
     "jsonschema>=4.0",
 ]
 
+[project.scripts]
+sarif-kit = "sarif_kit.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/sarif-kit/sarif-kit"
 Issues = "https://github.com/sarif-kit/sarif-kit/issues"

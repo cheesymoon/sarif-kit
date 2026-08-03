@@ -1,0 +1,2 @@
+packaging==24.2
+idna==3.10
