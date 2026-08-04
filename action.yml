@@ -1,0 +1,44 @@
+name: 'sarif-kit'
+description: 'Convert the native output of a scanner or linter into SARIF 2.1.0 for GitHub Code Scanning.'
+author: 'Sergii S.'
+
+branding:
+  icon: 'shield'
+  color: 'yellow'
+
+inputs:
+  tool:
+    description: 'Tool that produced the input: pip-audit, yamllint, codespell, or auto to detect it from the input itself.'
+    required: true
+  input:
+    description: 'File holding the native tool output to convert.'
+    required: true
+  output:
+    description: 'SARIF file to write, ready to hand to github/codeql-action/upload-sarif.'
+    required: false
+    default: 'results.sarif'
+  src-root:
+    description: 'Repository root, used to rewrite absolute paths as relative ones so alert file links resolve.'
+    required: false
+    default: ''
+  dep-file:
+    description: 'Manifest that pip-audit findings point at. Defaults to requirements.txt, ignored by other tools.'
+    required: false
+    default: ''
+  fail-on-findings:
+    description: 'Set to true to exit 1 when the converted file contains any findings.'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/sarif-kit/sarif-kit:0.1.0'
+  # Passed explicitly instead of relying on the INPUT_* variables GitHub sets,
+  # because a hyphenated input becomes INPUT_SRC-ROOT, which a shell cannot read.
+  env:
+    SARIF_KIT_TOOL: ${{ inputs.tool }}
+    SARIF_KIT_INPUT: ${{ inputs.input }}
+    SARIF_KIT_OUTPUT: ${{ inputs.output }}
+    SARIF_KIT_SRC_ROOT: ${{ inputs.src-root }}
+    SARIF_KIT_DEP_FILE: ${{ inputs.dep-file }}
+    SARIF_KIT_FAIL_ON_FINDINGS: ${{ inputs.fail-on-findings }}
