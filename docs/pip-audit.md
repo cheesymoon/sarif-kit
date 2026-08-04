@@ -44,8 +44,10 @@ steps:
   - uses: actions/checkout@v4
   - name: Audit dependencies
     run: pipx run pip-audit -r requirements.txt -f json > pip-audit.json || true
+  - name: Install sarif-kit
+    run: pipx install git+https://github.com/sarif-kit/sarif-kit
   - name: Convert to SARIF
-    run: pipx run sarif-kit convert --tool pip-audit -i pip-audit.json -o pip-audit.sarif --dep-file requirements.txt
+    run: sarif-kit convert --tool pip-audit -i pip-audit.json -o pip-audit.sarif --dep-file requirements.txt
   - name: Upload to Code Scanning
     uses: github/codeql-action/upload-sarif@v4
     with:

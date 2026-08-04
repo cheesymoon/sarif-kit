@@ -2,131 +2,120 @@
 
 <img align="right" width="132" alt="A sheriff badge stamped with JSON braces" src="docs/img/logo.svg">
 
-**Convert the native output of scanners and linters that never added SARIF support into valid SARIF 2.1.0 for GitHub Code Scanning.**
+**Convert the native output of scanners and linters into valid SARIF 2.1.0, ready for GitHub Code Scanning.**
 
-A lot of common tools still can't emit [SARIF](https://sarifweb.azurewebsites.net/), the
-format GitHub Code Scanning reads: pip-audit, codespell, yamllint, and a long tail of
-others. People have asked the maintainers for years and most of those requests are still
-open. sarif-kit is the stopgap. Point it at a tool's existing JSON or text output and it
-gives you SARIF you can pass straight to `github/codeql-action/upload-sarif`.
+pip-audit, codespell and yamllint all report things worth fixing, and none of them can
+emit [SARIF](https://sarifweb.azurewebsites.net/), the format GitHub Code Scanning reads.
+The feature requests asking for it have been open for years, the codespell one since 2020.
+sarif-kit converts what those tools already print into SARIF you can hand straight to
+`github/codeql-action/upload-sarif`.
+
+## Install
+
+Not on PyPI yet, so install from the repository. Either of these puts a `sarif-kit`
+command on your PATH, which is what every example below assumes:
 
 ```bash
-uvx sarif-kit convert --tool pip-audit -i audit.json -o results.sarif
+uv tool install git+https://github.com/sarif-kit/sarif-kit
+pipx install git+https://github.com/sarif-kit/sarif-kit
 ```
+
+Python 3.11 or newer. The only dependency is `jsonschema`.
 
 ## Quickstart
 
-Capture the tool's native output, convert it, upload the result. With pip-audit:
+Run the tool the way you already do, convert what it printed, then upload:
 
 ```bash
-pip-audit -r requirements.txt -f json > pip-audit.json || true
-uvx sarif-kit convert --tool pip-audit -i pip-audit.json -o results.sarif --dep-file requirements.txt
+yamllint -f parsable . > yamllint.txt || [ $? -eq 1 ]
+sarif-kit convert --tool yamllint -i yamllint.txt -o results.sarif
 ```
 
-If you would rather not name the tool, `--auto` detects it from the shape of the
-input. When the input matches no known tool, or matches more than one, sarif-kit
-stops and asks for `--tool` instead of picking one for you:
-
-```bash
-uvx sarif-kit convert --auto -i yamllint.txt -o results.sarif
+```yaml
+- name: Upload to Code Scanning
+  uses: github/codeql-action/upload-sarif@v4
+  with:
+    sarif_file: results.sarif
+    category: yamllint
 ```
 
-Check any SARIF file against the vendored 2.1.0 schema, and combine several files
-into one log before uploading:
-
-```bash
-uvx sarif-kit validate results.sarif
-uvx sarif-kit merge -o combined.sarif pip-audit.sarif yamllint.sarif
-```
-
-Merging concatenates the runs of every input, and each run keeps its own tool
-and rules. GitHub accepts at most 20 runs per uploaded file, so `merge` refuses
-to write more than that rather than handing you a file the upload will reject.
-Merge one file per tool. GitHub tells analyses apart by tool and category and
-rejects any file whose runs share one, so `merge` refuses that combination as
-well. Two yamllint files belong in two uploads with a category each.
-
-`-i` and `-o` accept `-` for stdin and stdout, and `validate` reads stdin the
-same way. `--src-root` rewrites absolute paths relative to your repository root,
-which is what makes the file links in an alert resolve. `--fail-on-findings`
-makes `convert` exit 1 when the input contained findings, so a job can fail on
-them without running a second command.
-
-Exit codes, so CI can branch on them:
-
-| code | meaning |
-|---|---|
-| 0 | success |
-| 1 | findings present (`convert --fail-on-findings`) or schema-invalid (`validate`) |
-| 2 | conversion, usage or IO error |
-
-There is a man page in `man/sarif-kit.1`; pip and uvx installs do not put it on
-MANPATH, so read it with `man -l man/sarif-kit.1`.
+The guard on the first line matters. Most linters exit nonzero when they find something,
+and you want the job to carry on to the upload rather than stop at the scan. Each adapter
+page below gives the exact capture command for that tool, since the exit codes differ.
 
 ## Supported tools
 
-One page per adapter, each with the exact capture command, the severity mapping, and a
-copy-paste CI snippet:
+- [pip-audit](docs/pip-audit.md): one alert per advisory, linked to its osv.dev page and reported as an error
+- [yamllint](docs/yamllint.md): line and column preserved, yamllint's own error and warning levels kept
+- [codespell](docs/codespell.md): one rule per typo, so alerts read `"lenght" should be "length"` instead of all sharing a title
 
-- [pip-audit](docs/pip-audit.md): one alert per advisory, linked to osv.dev
-- [yamllint](docs/yamllint.md): parsable output, line and column preserved
-- [codespell](docs/codespell.md): typo and suggested correction per alert
-
-More adapters are planned.
-
-Here is a pip-audit finding as GitHub renders it, converted by sarif-kit and uploaded
-through `upload-sarif`:
+Here is a pip-audit finding as GitHub renders it, converted by sarif-kit:
 
 ![A pip-audit finding rendered as a GitHub Code Scanning alert](docs/img/pip-audit-alert.jpg)
 
-## Positioning: how sarif-kit is different
+## Commands
 
-sarif-kit only goes one way: native tool output into SARIF. A few nearby tools sound like
-they do the same thing but don't:
+```
+sarif-kit convert (--tool NAME | --auto) -i PATH -o PATH [--src-root PATH] [--dep-file PATH] [--fail-on-findings]
+sarif-kit validate PATH
+sarif-kit merge -o PATH INPUT [INPUT ...]
+```
 
-- microsoft/sarif-tools and the "SARIF Converter" Marketplace action go the other way,
-  turning SARIF into CSV or HTML. sarif-kit produces the SARIF they read.
-- MegaLinter and reviewdog want you to adopt their whole pipeline. sarif-kit is one
-  converter you drop into the CI you already run.
-- node-sarif-builder is a library for tool authors writing SARIF by hand. sarif-kit is a
-  finished CLI and GitHub Action for people who just want a scanner's output uploaded,
-  with the adapters and fingerprinting already handled.
+`--auto` works out the adapter from the shape of the input, and refuses to guess when the
+input matches nothing or matches two tools at once. `-i` and `-o` accept `-` for stdin and
+stdout. `--src-root` rewrites absolute paths relative to your repository root, which is
+what makes the file links in an alert resolve. `merge` combines SARIF files into one
+upload, one file per tool, because GitHub rejects a file whose runs share an analysis
+category.
 
-Every adapter gets checked in GitHub's real Code Scanning UI, on top of schema
-validation. If the alert doesn't show the right title, severity, and file/line link, it
-isn't done.
+| exit code | meaning |
+|---|---|
+| 0 | success |
+| 1 | findings present under `convert --fail-on-findings`, or the file failed validation under `validate` |
+| 2 | conversion, usage or IO error |
+
+Full reference: `man -l man/sarif-kit.1` from a clone.
+
+## Nearby tools that sound similar
+
+- microsoft/sarif-tools and the "SARIF Converter" Marketplace action go the other way, turning SARIF into CSV or HTML. sarif-kit produces the SARIF they read.
+- MegaLinter and reviewdog want you to adopt their whole pipeline. sarif-kit is one command you drop into the CI you already run.
+- node-sarif-builder is a library for tool authors writing SARIF by hand. sarif-kit is the finished converter for people who just want a scanner's findings in the Security tab.
 
 ## Status
 
-Early days. `PLAN.md` has the roadmap and `NOTES.md` has the launch and ground-check notes.
-Apache-2.0, Python 3.11+, managed with `uv`, SARIF 2.1.0 only.
+The converter core, the first three adapters and the CLI are done, covered by 124 tests
+with golden files for every adapter. A PyPI release and a GitHub Action wrapping the CLI
+come next. After that the adapter order follows whatever people actually ask for, with ty
+and vulture the current front runners.
 
-The core is done: `src/sarif_kit/` has the SARIF builder, validation against the
-vendored schema, stable fingerprinting, and severity mapping. The first three adapters
-(pip-audit, yamllint, codespell) are in, and the CLI is complete: `convert` with
-`--auto` detection, `validate`, `merge`, a man page, and exit codes CI can branch on.
+Passing the schema is not what makes an adapter finished here. Every adapter is uploaded
+to a real repository and inspected in GitHub's Code Scanning UI, and if the alert does not
+show the right title, severity and file link, it goes back.
 
 ## Development
 
 ```bash
 uv sync
-uv run pytest            # unit + golden + schema-validation tests
-UPDATE_GOLDEN=1 uv run pytest   # refresh golden files after an intentional change
+uv run pytest                    # unit, golden and schema tests
+UPDATE_GOLDEN=1 uv run pytest    # refresh golden files after an intentional change
 ```
 
-### Upload gate: does it actually upload
+### The upload gate
 
-A schema-valid file still isn't guaranteed to upload; GitHub applies extra rules of its
-own. This gate runs a real upload:
+A schema-valid file can still be turned away by GitHub, which applies rules of its own, so
+the real test is an upload. The "Upload gate" workflow does exactly that. Start it from the
+Actions tab, and it runs each supported tool against its committed fixture, converts the
+fresh output with the CLI built from that commit, uploads one SARIF per tool, then merges
+two of them and uploads the combined file as well.
 
-1. Push this repo to a GitHub repo with Code Scanning (a public repo gets it for free; a
-   private one needs GitHub Advanced Security).
-2. In the Actions tab, pick "Upload gate" and hit "Run workflow".
-3. Under Security > Code scanning, the alert "sarif-kit end-to-end upload gate" should
-   show up with a clickable `README.md:1` link.
+Afterwards, look under Security, then Code scanning. Every alert should carry the right
+title and severity and link to a real line of a real file. Running the gate on a fork needs
+Code Scanning enabled, which is free on public repositories and needs GitHub Advanced
+Security on private ones.
 
-The same workflow also runs each supported tool against its committed fixture input,
-converts the fresh output with the real CLI, and uploads one SARIF per tool. Check that
-every adapter's alerts show the right title, severity, and file/line link.
+To build the minimal gate file locally:
 
-To build the gate SARIF locally: `uv run python scripts/gate_minimal_sarif.py gate.sarif`.
+```bash
+uv run python scripts/gate_minimal_sarif.py gate.sarif
+```

@@ -52,8 +52,10 @@ steps:
   - uses: actions/checkout@v4
   - name: Spell-check the tree
     run: pipx run codespell > codespell.txt || [ $? -eq 65 ]
+  - name: Install sarif-kit
+    run: pipx install git+https://github.com/sarif-kit/sarif-kit
   - name: Convert to SARIF
-    run: pipx run sarif-kit convert --tool codespell -i codespell.txt -o codespell.sarif
+    run: sarif-kit convert --tool codespell -i codespell.txt -o codespell.sarif
   - name: Upload to Code Scanning
     uses: github/codeql-action/upload-sarif@v4
     with:

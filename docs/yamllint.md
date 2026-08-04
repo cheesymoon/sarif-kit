@@ -53,8 +53,10 @@ steps:
   - uses: actions/checkout@v4
   - name: Lint YAML
     run: pipx run yamllint -f parsable . > yamllint.txt || [ $? -eq 1 ]
+  - name: Install sarif-kit
+    run: pipx install git+https://github.com/sarif-kit/sarif-kit
   - name: Convert to SARIF
-    run: pipx run sarif-kit convert --tool yamllint -i yamllint.txt -o yamllint.sarif
+    run: sarif-kit convert --tool yamllint -i yamllint.txt -o yamllint.sarif
   - name: Upload to Code Scanning
     uses: github/codeql-action/upload-sarif@v4
     with:
