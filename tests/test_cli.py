@@ -262,3 +262,29 @@ def test_merge_refuses_more_runs_than_github_accepts(tmp_path, capsys):
     assert code == 2
     assert "21 runs" in capsys.readouterr().err
     assert not out.exists()
+
+
+def test_merge_refuses_runs_that_would_share_a_category(tmp_path, capsys):
+    out = tmp_path / "all.sarif"
+    twice = str(GOLDEN_DIR / "yamllint.native.sarif.json")
+    code = main(["merge", "-o", str(out), twice, twice])
+    assert code == 2
+    assert "yamllint" in capsys.readouterr().err
+    assert not out.exists()
+
+
+def test_merge_refuses_same_category_with_different_run_ids(tmp_path, capsys):
+    # GitHub reads automationDetails.id as category/run-id, so these two runs share
+    # the category "shared" despite having different ids.
+    ids = ("shared/run-a", "shared/run-b")
+    paths = []
+    for name, run_id in zip(("a.sarif", "b.sarif"), ids):
+        log = json.loads((GOLDEN_DIR / "yamllint.native.sarif.json").read_text(encoding="utf-8"))
+        log["runs"][0]["automationDetails"] = {"id": run_id}
+        path = tmp_path / name
+        path.write_text(json.dumps(log), encoding="utf-8")
+        paths.append(str(path))
+    out = tmp_path / "all.sarif"
+    assert main(["merge", "-o", str(out), *paths]) == 2
+    assert "shared" in capsys.readouterr().err
+    assert not out.exists()

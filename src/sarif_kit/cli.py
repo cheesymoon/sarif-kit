@@ -14,7 +14,13 @@ import json
 import sys
 
 from .adapters import ADAPTERS, detect_tool, get_adapter
-from .builder import GITHUB_MAX_RUNS, SarifBuilder, merge_logs, sarif_log_error
+from .builder import (
+    GITHUB_MAX_RUNS,
+    SarifBuilder,
+    duplicate_category,
+    merge_logs,
+    sarif_log_error,
+)
 from .validate import assert_valid, validation_errors
 
 #: Converted, valid or merged.
@@ -122,6 +128,12 @@ def _merge(args: argparse.Namespace) -> int:
         return _fail(
             f"the merged log would hold {runs} runs, and GitHub rejects files with more "
             f"than {GITHUB_MAX_RUNS}; upload them as separate files instead"
+        )
+    shared = duplicate_category(logs)
+    if shared:
+        return _fail(
+            f"two runs would share the analysis category {shared!r}, which GitHub rejects "
+            "in one file; upload them separately with a category each"
         )
     try:
         _write(args.output, json.dumps(merge_logs(logs), indent=2) + "\n")

@@ -81,8 +81,9 @@ GitHub accepts at most 20 runs per uploaded file.
 Merging past that fails here, with a clear message, instead of later when the
 upload is rejected.
 Merge one file per tool.
-GitHub tells analyses apart by tool and category, so two runs of the same tool
-belong in separate uploads with separate categories.
+GitHub tells analyses apart by tool and category and rejects any file whose runs
+share one, so merging those is an error here too.
+Two yamllint files belong in two uploads with a category each.
 .TP
 .BI \-o " PATH" "\fR,\fP \-\-output " PATH
 The merged SARIF file to write.

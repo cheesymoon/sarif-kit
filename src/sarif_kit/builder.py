@@ -62,6 +62,31 @@ def sarif_log_error(log: object) -> str | None:
     return None
 
 
+def duplicate_category(logs: list[dict]) -> str | None:
+    """The first analysis category claimed by two runs, or ``None`` if all differ.
+
+    GitHub derives the category of an analysis from the tool name and
+    ``automationDetails.id``, and refuses a file where two runs land on the same
+    one: "The CodeQL Action does not support uploading multiple SARIF runs with
+    the same category." That was checked against Code Scanning on 2026-08-04, so
+    merging such a file is a failure worth catching before the upload does.
+
+    Only part of the id counts. GitHub reads it as ``category/run-id``, taking
+    everything before the last slash as the category, so ``linux/run-1`` and
+    ``linux/run-2`` collide even though the ids differ.
+    """
+    seen = set()
+    for log in logs:
+        for run in log["runs"]:
+            name = run.get("tool", {}).get("driver", {}).get("name", "")
+            automation = run.get("automationDetails", {}).get("id", "")
+            category = automation.rpartition("/")[0]
+            if (name, category) in seen:
+                return f"{category}/{name}" if category else name
+            seen.add((name, category))
+    return None
+
+
 def merge_logs(logs: list[dict]) -> dict:
     """Concatenate the runs of already-checked SARIF logs into a single log.
 

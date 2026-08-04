@@ -40,8 +40,9 @@ uvx sarif-kit merge -o combined.sarif pip-audit.sarif yamllint.sarif
 Merging concatenates the runs of every input, and each run keeps its own tool
 and rules. GitHub accepts at most 20 runs per uploaded file, so `merge` refuses
 to write more than that rather than handing you a file the upload will reject.
-Merge one file per tool: GitHub tells analyses apart by tool and category, so
-two runs of the same tool belong in separate uploads with separate categories.
+Merge one file per tool. GitHub tells analyses apart by tool and category and
+rejects any file whose runs share one, so `merge` refuses that combination as
+well. Two yamllint files belong in two uploads with a category each.
 
 `-i` and `-o` accept `-` for stdin and stdout, and `validate` reads stdin the
 same way. `--src-root` rewrites absolute paths relative to your repository root,

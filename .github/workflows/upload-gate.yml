@@ -8,9 +8,8 @@
 # Check each alert for the right title, severity, and a working file/line link.
 #
 # The merged job (Step 4) checks that a file built by `sarif-kit merge` uploads
-# at all, and probes whether GitHub accepts two runs of the same tool in one
-# file, which its docs do not answer. The probe step is allowed to fail; check
-# what it actually did before drawing a conclusion. Alerts from this job
+# and processes, and that merge still refuses the one combination GitHub will
+# not take, two runs sharing an analysis category. Alerts from this job
 # duplicate the per-tool ones under a category of their own, which is expected.
 name: Upload gate
 
@@ -106,18 +105,16 @@ jobs:
         with:
           sarif_file: merged.sarif
           category: sarif-kit-merged
-      - name: Merge two runs of the same tool
+      # Uploading two runs that share an analysis category fails: "The CodeQL
+      # Action does not support uploading multiple SARIF runs with the same
+      # category" (checked against Code Scanning on 2026-08-04). merge refuses
+      # to build such a file, and this step keeps that true.
+      - name: Refuse to merge two runs of the same tool
         run: |
           uvx yamllint -f parsable fixtures/yamllint/input.warnings.yaml > warnings.out || true
           test -s warnings.out
           uv run sarif-kit convert --tool yamllint -i warnings.out -o warnings.sarif
-          uv run sarif-kit merge -o same-tool.sarif yamllint.sarif warnings.sarif
-      # GitHub's docs never say whether a file like this is acceptable. This
-      # step finds out and is allowed to fail. If it does fail, merge should
-      # refuse same-tool inputs.
-      - name: Upload the same-tool file (probe, allowed to fail)
-        continue-on-error: true
-        uses: github/codeql-action/upload-sarif@v4
-        with:
-          sarif_file: same-tool.sarif
-          category: sarif-kit-merged-same-tool
+          if uv run sarif-kit merge -o same-tool.sarif yamllint.sarif warnings.sarif; then
+            echo "merge accepted two yamllint runs; GitHub would reject that file" >&2
+            exit 1
+          fi
