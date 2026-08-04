@@ -1,0 +1,15 @@
+# Only what `pip install /src` needs reaches the image. The markdown rule matters
+# beyond size: the planning files are local-only and must not ship anywhere.
+.git
+.github
+.venv
+.pytest_cache
+dist
+docs
+fixtures
+man
+scripts
+tests
+uv.lock
+*.md
+!README.md
