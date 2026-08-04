@@ -37,8 +37,8 @@ steps:
 ```
 
 The action runs from a prebuilt container image, so nothing installs Python on your
-runner. Upload each tool under its own `category`, which is what stops them overwriting
-each other's alerts.
+runner. Give each tool its own `category` on upload. Without that, they overwrite each
+other's alerts.
 
 | input | required | meaning |
 |---|---|---|
