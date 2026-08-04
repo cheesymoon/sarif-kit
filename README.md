@@ -1,3 +1,5 @@
+<img align="right" width="132" alt="A sheriff badge stamped with JSON braces" src="docs/img/logo.svg">
+
 # sarif-kit
 
 **Convert the native output of scanners and linters that never added SARIF support into valid SARIF 2.1.0 for GitHub Code Scanning.**

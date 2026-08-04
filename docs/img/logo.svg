@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="sarif-kit logo: a sheriff badge with JSON braces at its centre">
+  <title>sarif-kit</title>
+  <g fill="none" stroke="#2a2118" stroke-width="16" stroke-linejoin="round">
+    <path d="M 256,70 L 311,160.7 L 417.1,163 L 366,256 L 417.1,349 L 311,351.3 L 256,442 L 201,351.3 L 94.9,349 L 146,256 L 94.9,163 L 201,160.7 Z" fill="#e8b23a"/>
+    <circle cx="256" cy="70" r="25" fill="#e8b23a"/>
+    <circle cx="417.1" cy="163" r="25" fill="#e8b23a"/>
+    <circle cx="417.1" cy="349" r="25" fill="#e8b23a"/>
+    <circle cx="256" cy="442" r="25" fill="#e8b23a"/>
+    <circle cx="94.9" cy="349" r="25" fill="#e8b23a"/>
+    <circle cx="94.9" cy="163" r="25" fill="#e8b23a"/>
+  </g>
+  <circle cx="256" cy="256" r="116" fill="#f2c75c" stroke="#2a2118" stroke-width="14"/>
+  <g stroke="#2a2118" stroke-width="11" stroke-linecap="round" fill="none" transform="translate(256 256) scale(1.2)">
+    <path d="M 30,-52 C 17,-52 20,-43 20,-33 C 20,-20 13,-5 0,0 C 13,5 20,20 20,33 C 20,43 17,52 30,52" transform="translate(-44 0)"/>
+    <path d="M 30,-52 C 17,-52 20,-43 20,-33 C 20,-20 13,-5 0,0 C 13,5 20,20 20,33 C 20,43 17,52 30,52" transform="translate(44 0) scale(-1 1)"/>
+  </g>
+</svg>
