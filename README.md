@@ -10,10 +10,56 @@ The feature requests asking for it have been open for years, the codespell one s
 sarif-kit converts what those tools already print into SARIF you can hand straight to
 `github/codeql-action/upload-sarif`.
 
-## Install
+## In GitHub Actions
+
+Run the tool the way you already do, convert what it printed, then upload:
+
+```yaml
+permissions:
+  contents: read
+  security-events: write
+
+steps:
+  - uses: actions/checkout@v7
+  - name: Lint YAML
+    run: pipx run yamllint -f parsable . > yamllint.txt || [ $? -eq 1 ]
+  - name: Convert to SARIF
+    uses: sarif-kit/sarif-kit@v0.1.0
+    with:
+      tool: yamllint
+      input: yamllint.txt
+      output: yamllint.sarif
+  - name: Upload to Code Scanning
+    uses: github/codeql-action/upload-sarif@v4
+    with:
+      sarif_file: yamllint.sarif
+      category: yamllint
+```
+
+The action runs from a prebuilt container image, so nothing installs Python on your
+runner. Upload each tool under its own `category`, which is what stops them overwriting
+each other's alerts.
+
+| input | required | meaning |
+|---|---|---|
+| `tool` | yes | `pip-audit`, `yamllint`, `codespell`, or `auto` to detect it from the input |
+| `input` | yes | file holding the tool's native output |
+| `output` | no | SARIF file to write, defaults to `results.sarif` |
+| `src-root` | no | repository root, used to rewrite absolute paths as relative ones |
+| `dep-file` | no | manifest that pip-audit findings point at, defaults to `requirements.txt` |
+| `fail-on-findings` | no | set to `true` to exit 1 when the converted file has findings |
+
+The guard on the lint line matters. Most linters exit nonzero when they find something,
+and you want the job to carry on to the upload rather than stop at the scan. Each adapter
+page below gives the exact capture command for that tool, since the exit codes differ.
+
+[sarif-kit/demo](https://github.com/sarif-kit/demo) is a repository broken on purpose that
+runs all three tools this way, if you want to see the alerts before wiring anything up.
+
+## On your machine
 
 Not on PyPI yet, so install from the repository. Either of these puts a `sarif-kit`
-command on your PATH, which is what every example below assumes:
+command on your PATH:
 
 ```bash
 uv tool install git+https://github.com/sarif-kit/sarif-kit
@@ -22,26 +68,10 @@ pipx install git+https://github.com/sarif-kit/sarif-kit
 
 Python 3.11 or newer. The only dependency is `jsonschema`.
 
-## Quickstart
-
-Run the tool the way you already do, convert what it printed, then upload:
-
 ```bash
 yamllint -f parsable . > yamllint.txt || [ $? -eq 1 ]
 sarif-kit convert --tool yamllint -i yamllint.txt -o results.sarif
 ```
-
-```yaml
-- name: Upload to Code Scanning
-  uses: github/codeql-action/upload-sarif@v4
-  with:
-    sarif_file: results.sarif
-    category: yamllint
-```
-
-The guard on the first line matters. Most linters exit nonzero when they find something,
-and you want the job to carry on to the upload rather than stop at the scan. Each adapter
-page below gives the exact capture command for that tool, since the exit codes differ.
 
 ## Supported tools
 
@@ -84,14 +114,16 @@ Full reference: `man -l man/sarif-kit.1` from a clone.
 
 ## Status
 
-The converter core, the first three adapters and the CLI are done, covered by 124 tests
-with golden files for every adapter. A PyPI release and a GitHub Action wrapping the CLI
-come next. After that the adapter order follows whatever people actually ask for, with ty
-and vulture the current front runners.
+The converter core, the first three adapters, the CLI and the GitHub Action are done,
+covered by 124 tests with golden files for every adapter. A PyPI release comes next. After
+that the adapter order follows whatever people actually ask for, with ty and vulture the
+current front runners.
 
 Passing the schema is not what makes an adapter finished here. Every adapter is uploaded
 to a real repository and inspected in GitHub's Code Scanning UI, and if the alert does not
-show the right title, severity and file link, it goes back.
+show the right title, severity and file link, it goes back. The action gets the same
+treatment: it is not documented here until it has run green in the demo repository and the
+alerts it produced have been read.
 
 ## Development
 
