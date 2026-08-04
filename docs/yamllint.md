@@ -50,13 +50,15 @@ permissions:
   security-events: write
 
 steps:
-  - uses: actions/checkout@v4
+  - uses: actions/checkout@v7
   - name: Lint YAML
     run: pipx run yamllint -f parsable . > yamllint.txt || [ $? -eq 1 ]
-  - name: Install sarif-kit
-    run: pipx install git+https://github.com/sarif-kit/sarif-kit
   - name: Convert to SARIF
-    run: sarif-kit convert --tool yamllint -i yamllint.txt -o yamllint.sarif
+    uses: sarif-kit/sarif-kit@v0.1.0
+    with:
+      tool: yamllint
+      input: yamllint.txt
+      output: yamllint.sarif
   - name: Upload to Code Scanning
     uses: github/codeql-action/upload-sarif@v4
     with:

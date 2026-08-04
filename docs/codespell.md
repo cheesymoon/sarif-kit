@@ -49,13 +49,15 @@ permissions:
   security-events: write
 
 steps:
-  - uses: actions/checkout@v4
+  - uses: actions/checkout@v7
   - name: Spell-check the tree
     run: pipx run codespell > codespell.txt || [ $? -eq 65 ]
-  - name: Install sarif-kit
-    run: pipx install git+https://github.com/sarif-kit/sarif-kit
   - name: Convert to SARIF
-    run: sarif-kit convert --tool codespell -i codespell.txt -o codespell.sarif
+    uses: sarif-kit/sarif-kit@v0.1.0
+    with:
+      tool: codespell
+      input: codespell.txt
+      output: codespell.sarif
   - name: Upload to Code Scanning
     uses: github/codeql-action/upload-sarif@v4
     with:
