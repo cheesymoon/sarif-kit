@@ -30,4 +30,9 @@ def get_adapter(name: str) -> ModuleType:
         raise ValueError(f"unknown tool {name!r}; supported tools are {known}") from None
 
 
-__all__ = ["ADAPTERS", "get_adapter"]
+def detect_tool(raw: str) -> list[str]:
+    """Names of every registered adapter whose ``detect`` claims ``raw``, sorted."""
+    return [name for name in sorted(ADAPTERS) if ADAPTERS[name].detect(raw)]
+
+
+__all__ = ["ADAPTERS", "detect_tool", "get_adapter"]

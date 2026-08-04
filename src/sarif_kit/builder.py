@@ -30,6 +30,9 @@ SCHEMA_URI = "https://json.schemastore.org/sarif-2.1.0.json"
 #: GitHub Code Scanning rejects uploads with more than this many results per run.
 GITHUB_MAX_RESULTS = 5000
 
+#: GitHub Code Scanning rejects uploaded files holding more than this many runs.
+GITHUB_MAX_RUNS = 20
+
 # A Windows drive prefix, after backslashes have been normalized to forward slashes.
 _DRIVE = re.compile(r"^[A-Za-z]:/")
 
@@ -42,6 +45,34 @@ _TRUNCATION_RULE = Rule(
     short_description="Results truncated to fit GitHub's upload limit",
     default_level="warning",
 )
+
+
+def sarif_log_error(log: object) -> str | None:
+    """Why ``log`` is not a SARIF 2.1.0 log, or ``None`` if it is one.
+
+    A shape check only, not schema validation. It exists so merging can name the
+    offending input instead of failing on a KeyError halfway through.
+    """
+    if not isinstance(log, dict):
+        return "not a JSON object"
+    if log.get("version") != SARIF_VERSION:
+        return f"missing or wrong 'version', expected {SARIF_VERSION!r}"
+    if not isinstance(log.get("runs"), list):
+        return "missing or non-list 'runs'"
+    return None
+
+
+def merge_logs(logs: list[dict]) -> dict:
+    """Concatenate the runs of already-checked SARIF logs into a single log.
+
+    Runs are copied across in input order and keep their own rules, so ruleIndex
+    values stay valid without any remapping. A log carrying several runs
+    contributes all of them. The caller checks the inputs, with
+    :func:`sarif_log_error` for the envelope and the schema for the rest; merging
+    valid logs cannot produce an invalid one.
+    """
+    runs = [run for log in logs for run in log["runs"]]
+    return {"$schema": SCHEMA_URI, "version": SARIF_VERSION, "runs": runs}
 
 
 def normalize_uri(uri: str, src_root: str | None = None) -> str:

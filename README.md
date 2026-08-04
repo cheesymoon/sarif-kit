@@ -12,6 +12,54 @@ gives you SARIF you can pass straight to `github/codeql-action/upload-sarif`.
 uvx sarif-kit convert --tool pip-audit -i audit.json -o results.sarif
 ```
 
+## Quickstart
+
+Capture the tool's native output, convert it, upload the result. With pip-audit:
+
+```bash
+pip-audit -r requirements.txt -f json > pip-audit.json || true
+uvx sarif-kit convert --tool pip-audit -i pip-audit.json -o results.sarif --dep-file requirements.txt
+```
+
+If you would rather not name the tool, `--auto` detects it from the shape of the
+input. When the input matches no known tool, or matches more than one, sarif-kit
+stops and asks for `--tool` instead of picking one for you:
+
+```bash
+uvx sarif-kit convert --auto -i yamllint.txt -o results.sarif
+```
+
+Check any SARIF file against the vendored 2.1.0 schema, and combine several files
+into one log before uploading:
+
+```bash
+uvx sarif-kit validate results.sarif
+uvx sarif-kit merge -o combined.sarif pip-audit.sarif yamllint.sarif
+```
+
+Merging concatenates the runs of every input, and each run keeps its own tool
+and rules. GitHub accepts at most 20 runs per uploaded file, so `merge` refuses
+to write more than that rather than handing you a file the upload will reject.
+Merge one file per tool: GitHub tells analyses apart by tool and category, so
+two runs of the same tool belong in separate uploads with separate categories.
+
+`-i` and `-o` accept `-` for stdin and stdout, and `validate` reads stdin the
+same way. `--src-root` rewrites absolute paths relative to your repository root,
+which is what makes the file links in an alert resolve. `--fail-on-findings`
+makes `convert` exit 1 when the input contained findings, so a job can fail on
+them without running a second command.
+
+Exit codes, so CI can branch on them:
+
+| code | meaning |
+|---|---|
+| 0 | success |
+| 1 | findings present (`convert --fail-on-findings`) or schema-invalid (`validate`) |
+| 2 | conversion, usage or IO error |
+
+There is a man page in `man/sarif-kit.1`; pip and uvx installs do not put it on
+MANPATH, so read it with `man -l man/sarif-kit.1`.
+
 ## Supported tools
 
 One page per adapter, each with the exact capture command, the severity mapping, and a
@@ -52,7 +100,8 @@ Apache-2.0, Python 3.11+, managed with `uv`, SARIF 2.1.0 only.
 
 The core is done: `src/sarif_kit/` has the SARIF builder, validation against the
 vendored schema, stable fingerprinting, and severity mapping. The first three adapters
-(pip-audit, yamllint, codespell) and a minimal `convert` CLI are in.
+(pip-audit, yamllint, codespell) are in, and the CLI is complete: `convert` with
+`--auto` detection, `validate`, `merge`, a man page, and exit codes CI can branch on.
 
 ## Development
 

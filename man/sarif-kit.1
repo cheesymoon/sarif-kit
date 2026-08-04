@@ -1,0 +1,151 @@
+.TH SARIF-KIT 1 "2026-08-04" "sarif-kit" "User Commands"
+.SH NAME
+sarif-kit \- convert native scanner and linter output into SARIF 2.1.0
+.SH SYNOPSIS
+.nf
+\fBsarif-kit convert\fR (\fB\-\-tool\fR \fINAME\fR | \fB\-\-auto\fR) \fB\-i\fR \fIPATH\fR \fB\-o\fR \fIPATH\fR
+                  [\fB\-\-src\-root\fR \fIPATH\fR] [\fB\-\-dep\-file\fR \fIPATH\fR] [\fB\-\-fail\-on\-findings\fR]
+\fBsarif-kit validate\fR \fIPATH\fR
+\fBsarif-kit merge\fR \fB\-o\fR \fIPATH\fR \fIINPUT\fR [\fIINPUT\fR ...]
+.fi
+.SH DESCRIPTION
+Many scanners and linters cannot emit SARIF, the format GitHub Code Scanning
+reads.
+.B sarif-kit
+takes the native output such a tool already produces and turns it into valid
+SARIF 2.1.0, ready to hand to GitHub's
+.I upload-sarif
+action.
+It converts existing output files; it never runs the underlying tools itself.
+.PP
+Every command also accepts
+.B \-\-help
+and prints a short usage summary.
+.SH COMMANDS
+.SS convert
+Convert one tool's native output to SARIF.
+Exactly one of
+.B \-\-tool
+and
+.B \-\-auto
+must be given.
+.TP
+.BI \-\-tool " NAME"
+The tool that produced the input.
+One of
+.BR pip-audit ,
+.B yamllint
+or
+.BR codespell .
+.TP
+.B \-\-auto
+Detect the tool from the shape of the input instead of naming it.
+Input that matches no known tool, or more than one, is an error.
+.TP
+.BI \-i " PATH" "\fR,\fP \-\-input " PATH
+The native output to read.
+Use \- for stdin.
+.TP
+.BI \-o " PATH" "\fR,\fP \-\-output " PATH
+The SARIF file to write.
+Use \- for stdout.
+.TP
+.BI \-\-src\-root " PATH"
+The repository root.
+Absolute paths in the input are rewritten relative to it, which is what makes
+the file links in GitHub's alerts resolve.
+.TP
+.BI \-\-dep\-file " PATH"
+The manifest the findings point at, for
+.B pip-audit
+only.
+pip-audit's JSON names packages, not files, so the alerts need a file to attach
+to (default requirements.txt).
+.TP
+.B \-\-fail\-on\-findings
+Exit 1 when the converted input contained any findings.
+The SARIF output is still written.
+Useful when the conversion itself should gate a CI job.
+.SS validate
+Check a SARIF file against the vendored SARIF 2.1.0 schema.
+Takes one positional
+.IR PATH ;
+\- reads stdin.
+Exits 0 when the file is valid and 1 when it is not.
+.SS merge
+Combine several SARIF files into a single log.
+The runs of every input are concatenated in the order the files are given, and
+each run keeps its own tool and rules, so nothing has to be renumbered.
+A file that already holds several runs contributes all of them.
+GitHub accepts at most 20 runs per uploaded file.
+Merging past that fails here, with a clear message, instead of later when the
+upload is rejected.
+Merge one file per tool.
+GitHub tells analyses apart by tool and category, so two runs of the same tool
+belong in separate uploads with separate categories.
+.TP
+.BI \-o " PATH" "\fR,\fP \-\-output " PATH
+The merged SARIF file to write.
+Use \- for stdout.
+.SH EXIT STATUS
+.TP
+.B 0
+Success.
+.TP
+.B 1
+Findings were present
+.RB ( "convert \-\-fail\-on\-findings" )
+or the file failed schema validation
+.RB ( validate ).
+.TP
+.B 2
+Conversion, usage or IO error.
+.SH EXAMPLES
+Audit dependencies with pip-audit and convert the result.
+The || true keeps the shell going when pip-audit exits nonzero on findings:
+.PP
+.nf
+.RS
+pip-audit \-r requirements.txt \-f json > pip\-audit.json || true
+sarif-kit convert \-\-tool pip-audit \-i pip\-audit.json \-o pip\-audit.sarif \-\-dep\-file requirements.txt
+.RE
+.fi
+.PP
+Lint YAML.
+yamllint exits 1 on errors, and the guard tolerates exactly that:
+.PP
+.nf
+.RS
+yamllint \-f parsable . > yamllint.txt || [ $? \-eq 1 ]
+sarif-kit convert \-\-tool yamllint \-i yamllint.txt \-o yamllint.sarif
+.RE
+.fi
+.PP
+Spell-check the tree.
+codespell exits 65 on typos:
+.PP
+.nf
+.RS
+codespell > codespell.txt || [ $? \-eq 65 ]
+sarif-kit convert \-\-tool codespell \-i codespell.txt \-o codespell.sarif
+.RE
+.fi
+.PP
+Let sarif-kit work out the tool, validate the result, then merge several logs
+into one:
+.PP
+.nf
+.RS
+sarif-kit convert \-\-auto \-i yamllint.txt \-o yamllint.sarif
+sarif-kit validate yamllint.sarif
+sarif-kit merge \-o combined.sarif pip\-audit.sarif yamllint.sarif codespell.sarif
+.RE
+.fi
+.SH SEE ALSO
+The upload half is GitHub's own
+.I github/codeql-action/upload-sarif
+action; sarif-kit deliberately stops at producing the file it accepts.
+.PP
+Per-tool capture commands, severity mappings and full CI workflow examples live
+in the docs directory of the repository:
+.I https://github.com/cheesymoon/sarif-kit

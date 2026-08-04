@@ -7,7 +7,7 @@ import json
 import pytest
 
 from sarif_kit import SarifBuilder, assert_valid
-from sarif_kit.adapters import ADAPTERS, get_adapter
+from sarif_kit.adapters import ADAPTERS, detect_tool, get_adapter
 from sarif_kit.adapters import codespell, pip_audit, yamllint
 
 from .utils import assert_matches_golden, read_fixture
@@ -55,6 +55,11 @@ def test_fixture_converts_to_valid_sarif(tool, fixture, golden):
 @pytest.mark.parametrize("tool", sorted(ADAPTERS))
 def test_detect_claims_only_its_own_fixtures(tool, fixture):
     assert get_adapter(tool).detect(read_fixture(fixture)) is (OWNERS[fixture] == tool)
+
+
+@pytest.mark.parametrize("fixture", sorted(f for f, owner in OWNERS.items() if owner))
+def test_detect_tool_names_exactly_one_tool(fixture):
+    assert detect_tool(read_fixture(fixture)) == [OWNERS[fixture]]
 
 
 @pytest.mark.parametrize("tool", sorted(ADAPTERS))
