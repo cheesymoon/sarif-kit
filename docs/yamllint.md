@@ -56,7 +56,7 @@ steps:
   - name: Convert to SARIF
     run: pipx run sarif-kit convert --tool yamllint -i yamllint.txt -o yamllint.sarif
   - name: Upload to Code Scanning
-    uses: github/codeql-action/upload-sarif@v3
+    uses: github/codeql-action/upload-sarif@v4
     with:
       sarif_file: yamllint.sarif
       category: yamllint

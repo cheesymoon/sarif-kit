@@ -47,7 +47,7 @@ steps:
   - name: Convert to SARIF
     run: pipx run sarif-kit convert --tool pip-audit -i pip-audit.json -o pip-audit.sarif --dep-file requirements.txt
   - name: Upload to Code Scanning
-    uses: github/codeql-action/upload-sarif@v3
+    uses: github/codeql-action/upload-sarif@v4
     with:
       sarif_file: pip-audit.sarif
       category: pip-audit

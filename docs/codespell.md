@@ -55,7 +55,7 @@ steps:
   - name: Convert to SARIF
     run: pipx run sarif-kit convert --tool codespell -i codespell.txt -o codespell.sarif
   - name: Upload to Code Scanning
-    uses: github/codeql-action/upload-sarif@v3
+    uses: github/codeql-action/upload-sarif@v4
     with:
       sarif_file: codespell.sarif
       category: codespell

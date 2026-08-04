@@ -6,6 +6,12 @@
 # The adapters job (Step 3) runs each supported tool against its committed fixture
 # input, converts the fresh output with the real CLI, and uploads one SARIF per tool.
 # Check each alert for the right title, severity, and a working file/line link.
+#
+# The merged job (Step 4) checks that a file built by `sarif-kit merge` uploads
+# at all, and probes whether GitHub accepts two runs of the same tool in one
+# file, which its docs do not answer. The probe step is allowed to fail; check
+# what it actually did before drawing a conclusion. Alerts from this job
+# duplicate the per-tool ones under a category of their own, which is expected.
 name: Upload gate
 
 on:
@@ -29,7 +35,7 @@ jobs:
       - name: Build gate SARIF
         run: uv run python scripts/gate_minimal_sarif.py gate.sarif
       - name: Upload to Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: gate.sarif
           category: sarif-kit-gate
@@ -70,7 +76,48 @@ jobs:
           uv run sarif-kit convert --tool ${{ matrix.tool }}
           -i native.out -o results.sarif ${{ matrix.extra }}
       - name: Upload to Code Scanning
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: results.sarif
           category: sarif-kit-${{ matrix.tool }}
+
+  merged:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
+        with:
+          python-version: "3.12"
+      - name: Sync
+        run: uv sync
+      - name: Convert two tools and merge them
+        run: |
+          uvx yamllint -f parsable fixtures/yamllint/input.yaml > yamllint.out || true
+          uvx codespell fixtures/codespell/input.py > codespell.out || true
+          test -s yamllint.out
+          test -s codespell.out
+          uv run sarif-kit convert --tool yamllint -i yamllint.out -o yamllint.sarif
+          uv run sarif-kit convert --tool codespell -i codespell.out -o codespell.sarif
+          uv run sarif-kit merge -o merged.sarif yamllint.sarif codespell.sarif
+          uv run sarif-kit validate merged.sarif
+      - name: Upload the merged file to Code Scanning
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: merged.sarif
+          category: sarif-kit-merged
+      - name: Merge two runs of the same tool
+        run: |
+          uvx yamllint -f parsable fixtures/yamllint/input.warnings.yaml > warnings.out || true
+          test -s warnings.out
+          uv run sarif-kit convert --tool yamllint -i warnings.out -o warnings.sarif
+          uv run sarif-kit merge -o same-tool.sarif yamllint.sarif warnings.sarif
+      # GitHub's docs never say whether a file like this is acceptable. This
+      # step finds out and is allowed to fail. If it does fail, merge should
+      # refuse same-tool inputs.
+      - name: Upload the same-tool file (probe, allowed to fail)
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: same-tool.sarif
+          category: sarif-kit-merged-same-tool
