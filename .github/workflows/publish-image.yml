@@ -1,9 +1,7 @@
-# Builds the image the Action runs and pushes it to GHCR.
-#
-# A tag push publishes the release version (v0.1.0 becomes the image tag 0.1.0),
-# which is what action.yml pins. Running it by hand from a branch publishes under
-# the branch name instead, which is how a change to the image gets tried out
-# before it is tagged.
+# Builds the image the Action runs and pushes it to GHCR under the branch
+# name, which is how a change to the image gets tried out before it ships.
+# Release images are built by release.yml, not here: release tags are pushed
+# with the workflow's own token, and such pushes never trigger this workflow.
 #
 # The package has to be public for the Action to work outside this org: the
 # runner pulls it without credentials. Set that once under the org's package
@@ -11,8 +9,6 @@
 name: Publish image
 
 on:
-  push:
-    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
@@ -24,8 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - name: Work out the image tag
-        run: echo "IMAGE_TAG=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+      - name: Use the branch name as the image tag
+        run: echo "IMAGE_TAG=${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:

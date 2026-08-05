@@ -1,0 +1,92 @@
+# Cuts a release when a qualifying conventional commit lands on master.
+#
+# python-semantic-release reads the commits since the last tag, bumps the
+# version in pyproject.toml, stamps the image pin in action.yml and the
+# copy-paste snippets in the docs, writes CHANGELOG.md, then commits, tags
+# and creates the GitHub Release. After that this workflow builds the GHCR
+# image for the new tag and publishes the sdist and wheel to PyPI through
+# trusted publishing, so the pipeline stores no API token at all.
+#
+# The image is built here rather than in publish-image.yml because tags
+# pushed with the workflow's own token never trigger other workflows.
+#
+# The workflow name, and the environment name below, are part of the OIDC
+# identity PyPI trusts. Renaming either breaks publishing until the trusted
+# publisher registration on PyPI is updated to match.
+#
+# A push with only docs/chore commits releases nothing and every later step
+# skips. The manual trigger exists for the rare release that has no
+# qualifying commit; it forces the chosen bump level.
+name: Release
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Bump level to force when no qualifying commit exists'
+        type: choice
+        options: [patch, minor, major]
+        required: true
+
+permissions: {}
+
+concurrency:
+  group: release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: write
+      packages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
+      - name: Version, changelog, tag, GitHub Release
+        id: version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORCE_LEVEL: ${{ inputs.force }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          before=$(git describe --tags --abbrev=0)
+          uvx --from 'python-semantic-release==10.6.1' \
+            semantic-release version ${FORCE_LEVEL:+"--$FORCE_LEVEL"}
+          after=$(git describe --tags --abbrev=0)
+          if [ "$before" != "$after" ]; then
+            {
+              echo "released=true"
+              echo "version=${after#v}"
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "released=false" >> "$GITHUB_OUTPUT"
+            echo "No qualifying commit since $before, nothing to release."
+          fi
+      - name: Log in to GHCR
+        if: steps.version.outputs.released == 'true'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push the image
+        if: steps.version.outputs.released == 'true'
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}:${{ steps.version.outputs.version }}
+      - name: Build the distributions
+        if: steps.version.outputs.released == 'true'
+        run: uv build
+      - name: Publish to PyPI
+        if: steps.version.outputs.released == 'true'
+        uses: pypa/gh-action-pypi-publish@release/v1
