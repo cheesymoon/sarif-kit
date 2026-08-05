@@ -53,7 +53,7 @@ steps:
   - name: Spell-check the tree
     run: pipx run codespell > codespell.txt || [ $? -eq 65 ]
   - name: Convert to SARIF
-    uses: sarif-kit/sarif-kit@v0.1.0
+    uses: sarif-kit/sarif-kit@v0.1.1
     with:
       tool: codespell
       input: codespell.txt
