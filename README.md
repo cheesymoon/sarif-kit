@@ -1,6 +1,6 @@
 # sarif-kit
 
-<img align="right" width="132" alt="A sheriff badge stamped with JSON braces" src="docs/img/logo.svg">
+<img align="right" width="132" alt="A sheriff badge stamped with JSON braces" src="https://raw.githubusercontent.com/sarif-kit/sarif-kit/master/docs/img/logo.svg">
 
 **Convert the native output of scanners and linters into valid SARIF 2.1.0, ready for GitHub Code Scanning.**
 
@@ -58,13 +58,14 @@ runs all three tools this way, if you want to see the alerts before wiring anyth
 
 ## On your machine
 
-Not on PyPI yet, so install from the repository. Either of these puts a `sarif-kit`
-command on your PATH:
+Either of these puts a `sarif-kit` command on your PATH:
 
 ```bash
-uv tool install git+https://github.com/sarif-kit/sarif-kit
-pipx install git+https://github.com/sarif-kit/sarif-kit
+uv tool install sarif-kit
+pipx install sarif-kit
 ```
+
+For a one-off run without installing anything, `uvx sarif-kit` works too.
 
 Python 3.11 or newer. The only dependency is `jsonschema`.
 
@@ -75,13 +76,13 @@ sarif-kit convert --tool yamllint -i yamllint.txt -o results.sarif
 
 ## Supported tools
 
-- [pip-audit](docs/pip-audit.md): one alert per advisory, linked to its osv.dev page and reported as an error
-- [yamllint](docs/yamllint.md): line and column preserved, yamllint's own error and warning levels kept
-- [codespell](docs/codespell.md): one rule per typo, so alerts read `"lenght" should be "length"` instead of all sharing a title
+- [pip-audit](https://github.com/sarif-kit/sarif-kit/blob/master/docs/pip-audit.md): one alert per advisory, linked to its osv.dev page and reported as an error
+- [yamllint](https://github.com/sarif-kit/sarif-kit/blob/master/docs/yamllint.md): line and column preserved, yamllint's own error and warning levels kept
+- [codespell](https://github.com/sarif-kit/sarif-kit/blob/master/docs/codespell.md): one rule per typo, so alerts read `"lenght" should be "length"` instead of all sharing a title
 
 Here is a pip-audit finding as GitHub renders it, converted by sarif-kit:
 
-![A pip-audit finding rendered as a GitHub Code Scanning alert](docs/img/pip-audit-alert.jpg)
+![A pip-audit finding rendered as a GitHub Code Scanning alert](https://raw.githubusercontent.com/sarif-kit/sarif-kit/master/docs/img/pip-audit-alert.jpg)
 
 ## Commands
 
@@ -115,9 +116,8 @@ Full reference: `man -l man/sarif-kit.1` from a clone.
 ## Status
 
 The converter core, the first three adapters, the CLI and the GitHub Action are done,
-covered by 124 tests with golden files for every adapter. A PyPI release comes next. After
-that the adapter order follows whatever people actually ask for, with ty and vulture the
-current front runners.
+covered by 124 tests with golden files for every adapter. From here the adapter order
+follows whatever people actually ask for, with ty and vulture the current front runners.
 
 Passing the schema is not what makes an adapter finished here. Every adapter is uploaded
 to a real repository and inspected in GitHub's Code Scanning UI, and if the alert does not
