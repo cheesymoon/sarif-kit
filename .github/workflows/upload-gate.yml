@@ -56,6 +56,14 @@ jobs:
           - tool: codespell
             capture: uvx codespell fixtures/codespell/input.py > native.out || true
             extra: ""
+          # No || true: pio check exits 0 with findings, so a nonzero exit is a real
+          # failure. The Tool Manager install lines it prints ahead of the JSON on a
+          # fresh runner are part of the test: the adapter must skip them.
+          - tool: platformio
+            capture: >
+              (cd fixtures/platformio/input &&
+              uvx platformio check --json-output > "$GITHUB_WORKSPACE/native.out")
+            extra: --src-root "$GITHUB_WORKSPACE"
     steps:
       - uses: actions/checkout@v7
       - name: Install uv

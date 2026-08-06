@@ -4,8 +4,9 @@
 
 **Convert the native output of scanners and linters into valid SARIF 2.1.0, ready for GitHub Code Scanning.**
 
-pip-audit, codespell and yamllint all report things worth fixing, and none of them can
-emit [SARIF](https://sarifweb.azurewebsites.net/), the format GitHub Code Scanning reads.
+pip-audit, codespell, yamllint and PlatformIO's `pio check` all report things worth
+fixing, and none of them can emit [SARIF](https://sarifweb.azurewebsites.net/), the
+format GitHub Code Scanning reads.
 The feature requests asking for it have been open for years, the codespell one since 2020.
 sarif-kit converts what those tools already print into SARIF you can hand straight to
 `github/codeql-action/upload-sarif`.
@@ -42,7 +43,7 @@ other's alerts.
 
 | input | required | meaning |
 |---|---|---|
-| `tool` | yes | `pip-audit`, `yamllint`, `codespell`, or `auto` to detect it from the input |
+| `tool` | yes | `pip-audit`, `yamllint`, `codespell`, `platformio`, or `auto` to detect it from the input |
 | `input` | yes | file holding the tool's native output |
 | `output` | no | SARIF file to write, defaults to `results.sarif` |
 | `src-root` | no | repository root, used to rewrite absolute paths as relative ones |
@@ -79,6 +80,7 @@ sarif-kit convert --tool yamllint -i yamllint.txt -o results.sarif
 - [pip-audit](https://github.com/sarif-kit/sarif-kit/blob/master/docs/pip-audit.md): one alert per advisory, linked to its osv.dev page and reported as an error
 - [yamllint](https://github.com/sarif-kit/sarif-kit/blob/master/docs/yamllint.md): line and column preserved, yamllint's own error and warning levels kept
 - [codespell](https://github.com/sarif-kit/sarif-kit/blob/master/docs/codespell.md): one rule per typo, so alerts read `"lenght" should be "length"` instead of all sharing a title
+- [PlatformIO check](https://github.com/sarif-kit/sarif-kit/blob/master/docs/platformio.md): cppcheck defects with line, column and CWE, absolute paths rewritten so alert links resolve
 
 Here is a pip-audit finding as GitHub renders it, converted by sarif-kit:
 

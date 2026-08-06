@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "tmp/fastled/src/platforms/avr/atmega/m328p/fastpin_m328p.h"
+                },
+                "region": {
+                  "startColumn": 3,
+                  "startLine": 35
+                }
+              }
+            }
+          ],
+          "message": {
+            "text": "Unmatched ')'. Configuration: 'PLATFORMIO=60119;ARDUINO_AVR_UNO=1;F_CPU=16000000L;ARDUINO_ARCH_AVR=1;ARDUINO=10808;__AVR_ATmega328P__=1;__DBL_MIN_EXP__=(-125);__HQ_FBIT__=15;__cpp_attributes=200809;__UINT_LEAST16_MAX__=0xffffU;__ATOMIC_ACQUIRE=2;__SFRACT_IBIT__=0;__FLT_MIN__=1.17549435e-38F;__GCC_IEC_559_COMPLEX=0;__BUILTIN_AVR_SLEEP=1;__BUILTIN_AVR_COUNTLSULLK=1;__BUILTIN_AVR_COUNTLSULLR=1;__UFRACT_MAX__=0XFFFFP-16UR;__UINT_LEAST8_TYPE__=unsigned char;__DQ_FBIT__=63;__INTMAX_C(c)=c ## LL;__ULFRACT_FBIT__=32;__SACCUM_EPSILON__=0x1P-7HK;__CHAR_BIT__=8;__USQ_IBIT__=0;__UINT8_MAX__=0xff;__ACCUM_FBIT__=15;__WINT_MAX__=0x7fff;__FLT32_MIN_EXP__=(-125);__cpp_static_assert=200410;__USFRACT_FBIT__=8;__ORDER_LITTLE_ENDIAN__=1234;__SIZE_MAX__=0xffffU;__WCHAR_MAX__=0x7fff;__LACCUM_IBIT__=32;__DBL_DENORM_MIN__=double(1.40129846e-45L);__GCC_ATOMIC_CHAR_LOCK_FREE=1;__GCC_IEC_559=0;__FLT_EVAL_METHOD__=0;__BUILTIN_AVR_LLKBITS=1;__cpp_binary_literals=201304;__LLACCUM_MAX__=0X7FFFFFFFFFFFFFFFP-47LLK;__GCC_ATOMIC_... (truncated)"
+          },
+          "partialFingerprints": {
+            "sarifKit/v1": "e37b6f5af1359e3e66c9c0dbd0ba852972215332140e6b8292fed980b5633b80:0"
+          },
+          "ruleId": "cppcheck:syntaxError",
+          "ruleIndex": 0
+        }
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://docs.platformio.org/en/latest/core/userguide/cmd_check.html",
+          "name": "platformio",
+          "rules": [
+            {
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "fullDescription": {
+                "text": "syntaxError, reported by cppcheck via pio check at high severity."
+              },
+              "help": {
+                "markdown": "syntaxError, reported by cppcheck via pio check at high severity.\n\n[More about this rule](<https://docs.platformio.org/en/latest/core/userguide/cmd_check.html>)",
+                "text": "syntaxError, reported by cppcheck via pio check at high severity."
+              },
+              "helpUri": "https://docs.platformio.org/en/latest/core/userguide/cmd_check.html",
+              "id": "cppcheck:syntaxError",
+              "name": "syntaxError",
+              "shortDescription": {
+                "text": "Unmatched ')'. Configuration: 'PLATFORMIO=60119;ARDUINO_AVR_UNO=1;F_CPU=16000000L;ARDUINO_ARCH_AVR=1;ARDUINO=10808;__AVR_ATmega328P__=1;__DBL_MIN_EXP__=(-125);__HQ_FBIT__=15;__cpp_attributes=200809;__UINT_LEAST16_MAX__=0xffffU;__ATOMIC_ACQUIRE=2;__SFRACT_IBIT__=0;__FLT_MIN__=1.17549435e-38F;__GCC_IEC_559_COMPLEX=0;__BUILTIN_AVR_SLEEP=1;__BUILTIN_AVR_COUNTLSULLK=1;__BUILTIN_AVR_COUNTLSULLR=1;__UFRACT_MAX__=0XFFFFP-16UR;__UINT_LEAST8_TYPE__=unsigned char;__DQ_FBIT__=63;__INTMAX_C(c)=c ## LL;__ULFRACT_FBIT__=32;__SACCUM_EPSILON__=0x1P-7HK;__CHAR_BIT__=8;__USQ_IBIT__=0;__UINT8_MAX__=0xff;__ACCUM_FBIT__=15;__WINT_MAX__=0x7fff;__FLT32_MIN_EXP__=(-125);__cpp_static_assert=200410;__USFRACT_FBIT__=8;__ORDER_LITTLE_ENDIAN__=1234;__SIZE_MAX__=0xffffU;__WCHAR_MAX__=0x7fff;__LACCUM_IBIT__=32;__DBL_DENORM_MIN__=double(1.40129846e-45L);__GCC_ATOMIC_CHAR_LOCK_FREE=1;__GCC_IEC_559=0;__FLT_EVAL_METHOD__=0;__BUILTIN_AVR_LLKBITS=1;__cpp_binary_literals=201304;__LLACCUM_MAX__=0X7FFFFFFFFFFFFFFFP-47LLK;__GCC_ATOMIC_... (truncated)"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "version": "2.1.0"
+}

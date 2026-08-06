@@ -11,13 +11,14 @@ from __future__ import annotations
 
 from types import ModuleType
 
-from . import codespell, pip_audit, yamllint
+from . import codespell, pip_audit, platformio, yamllint
 
 #: Tool name to adapter module. The keys are what the CLI's ``--tool`` accepts.
 ADAPTERS: dict[str, ModuleType] = {
     pip_audit.TOOL_NAME: pip_audit,
     yamllint.TOOL_NAME: yamllint,
     codespell.TOOL_NAME: codespell,
+    platformio.TOOL_NAME: platformio,
 }
 
 

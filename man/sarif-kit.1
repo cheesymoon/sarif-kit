@@ -34,9 +34,10 @@ must be given.
 The tool that produced the input.
 One of
 .BR pip-audit ,
-.B yamllint
+.BR yamllint ,
+.B codespell
 or
-.BR codespell .
+.BR platformio .
 .TP
 .B \-\-auto
 Detect the tool from the shape of the input instead of naming it.
@@ -129,6 +130,17 @@ codespell exits 65 on typos:
 .RS
 codespell > codespell.txt || [ $? \-eq 65 ]
 sarif-kit convert \-\-tool codespell \-i codespell.txt \-o codespell.sarif
+.RE
+.fi
+.PP
+Statically analyze a PlatformIO project.
+pio check exits 0 even with findings, so no guard is needed, but its paths are
+absolute and need \-\-src\-root:
+.PP
+.nf
+.RS
+pio check \-\-json\-output > pio\-check.json
+sarif-kit convert \-\-tool platformio \-i pio\-check.json \-o pio\-check.sarif \-\-src\-root .
 .RE
 .fi
 .PP

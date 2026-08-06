@@ -8,7 +8,7 @@ import pytest
 
 from sarif_kit import SarifBuilder, assert_valid
 from sarif_kit.adapters import ADAPTERS, detect_tool, get_adapter
-from sarif_kit.adapters import codespell, pip_audit, yamllint
+from sarif_kit.adapters import codespell, pip_audit, platformio, yamllint
 
 from .utils import assert_matches_golden, read_fixture
 
@@ -20,6 +20,7 @@ CASES = [
     ("yamllint", "yamllint/native.warnings.parsable.txt", "yamllint.warnings.sarif.json"),
     ("codespell", "codespell/native.txt", "codespell.native.sarif.json"),
     ("codespell", "codespell/native.multi.txt", "codespell.multi.sarif.json"),
+    ("platformio", "platformio/native.fastled.json", "platformio.fastled.sarif.json"),
 ]
 
 # Which adapter each fixture belongs to; vulture has no adapter, so nothing claims it.
@@ -30,6 +31,7 @@ OWNERS = {
     "yamllint/native.warnings.parsable.txt": "yamllint",
     "codespell/native.txt": "codespell",
     "codespell/native.multi.txt": "codespell",
+    "platformio/native.fastled.json": "platformio",
     "vulture/native.txt": None,
 }
 
@@ -264,3 +266,173 @@ def test_codespell_skips_blank_and_unparseable_lines():
     raw = "\n".join(["", "WARNING: Binary file skipped", "a.txt:2: teh ==> the", "  "])
     _, results = codespell.convert(raw)
     assert len(results) == 1
+
+
+# -- platformio -----------------------------------------------------------------
+
+
+def defect(**overrides) -> dict:
+    """One entry of a `pio check --json-output` ``defects`` list."""
+    base = {
+        "severity": "high",
+        "category": "error",
+        "message": "Uninitialized variable: total",
+        "file": "/build/proj/src/main.c",
+        "line": 22,
+        "column": 12,
+        "callstack": "[/build/proj/src/main.c:22]",
+        "id": "uninitvar",
+        "cwe": "457",
+    }
+    return {**base, **overrides}
+
+
+def pio(*entries: dict) -> str:
+    """A `pio check --json-output` array; every entry is a successful run unless it says so."""
+    defaults = {"env": "native", "tool": "cppcheck", "succeeded": True, "duration": 2.2, "defects": []}
+    return json.dumps([{**defaults, **entry} for entry in entries])
+
+
+def test_platformio_namespaces_the_rule_id_and_keeps_the_position():
+    rules, results = platformio.convert(pio({"defects": [defect()]}))
+    assert [r.id for r in rules] == ["cppcheck:uninitvar"]
+    assert rules[0].name == "uninitvar"
+    assert rules[0].short_description == "Uninitialized variable: total"
+    assert rules[0].full_description == "uninitvar, reported by cppcheck via pio check at high severity."
+    assert rules[0].default_level == "error"
+    first = results[0]
+    assert first.rule_id == "cppcheck:uninitvar"
+    assert first.message == "Uninitialized variable: total"
+    assert (first.location.uri, first.location.start_line, first.location.start_column) == (
+        "/build/proj/src/main.c",
+        22,
+        12,
+    )
+    assert first.security_severity is None
+
+
+def test_platformio_maps_severities():
+    defects = [
+        defect(severity="high", id="uninitvar"),
+        defect(severity="medium", id="nullPointer"),
+        defect(severity="low", id="unusedVariable"),
+    ]
+    rules, results = platformio.convert(pio({"defects": defects}))
+    assert [r.level for r in results] == ["error", "warning", "note"]
+    assert [r.default_level for r in rules] == ["error", "warning", "note"]
+
+
+def test_platformio_converts_to_valid_sarif():
+    log = build("platformio", pio({"defects": [defect(), defect(id="unusedVariable", severity="low", cwe=None)]}))
+    assert_valid(log)
+
+
+def test_platformio_reads_the_json_after_the_install_chatter():
+    raw = "\n".join(
+        [
+            "Tool Manager: Installing platformio/tool-cppcheck @ ~1.21100.0",
+            "Downloading  0% 10% 55% 100%",
+            "git version 2.43.0",
+            "HEAD is now at abc1234 Release 2.13",
+            "Tool Manager: tool-cppcheck @ 1.21100.230717 has been installed!",
+            pio({"defects": [defect()]}),
+        ]
+    )
+    assert platformio.detect(raw) is True
+    _, results = platformio.convert(raw)
+    assert [r.rule_id for r in results] == ["cppcheck:uninitvar"]
+
+
+def test_platformio_failed_check_run_raises():
+    raw = pio({"env": "esp32dev", "tool": "clang-tidy", "succeeded": False})
+    with pytest.raises(ValueError) as exc:
+        platformio.convert(raw)
+    assert "esp32dev" in str(exc.value)
+    assert "clang-tidy" in str(exc.value)
+
+
+def test_platformio_fail_on_defect_output_still_converts():
+    # `--fail-on-defect` marks a run that worked and found things as not succeeded;
+    # the findings are exactly what should reach the upload.
+    raw = pio({"succeeded": False, "defects": [defect()]})
+    _, results = platformio.convert(raw)
+    assert [r.rule_id for r in results] == ["cppcheck:uninitvar"]
+
+
+@pytest.mark.parametrize("raw", ["[1]", '[{"foo": 1}]', '[{"env": "native"}]'])
+def test_platformio_rejects_entries_without_the_check_shape(raw):
+    # Skipping malformed entries would turn a bad capture into a clean-looking run.
+    with pytest.raises(ValueError):
+        platformio.convert(raw)
+
+
+def test_platformio_dedupes_the_same_defect_across_environments():
+    shared = defect()
+    other = defect(line=30, message="Array index out of bounds", id="arrayIndexOutOfBounds")
+    raw = pio({"env": "uno", "defects": [shared, other]}, {"env": "nanoatmega328", "defects": [shared]})
+    rules, results = platformio.convert(raw)
+    assert [r.id for r in rules] == ["cppcheck:uninitvar", "cppcheck:arrayIndexOutOfBounds"]
+    assert [(r.rule_id, r.location.start_line) for r in results] == [
+        ("cppcheck:uninitvar", 22),
+        ("cppcheck:arrayIndexOutOfBounds", 30),
+    ]
+
+
+@pytest.mark.parametrize("cwe", ["476", 476, "CWE-476"])
+def test_platformio_cwe_reaches_the_help_link_and_properties(cwe):
+    rules, results = platformio.convert(pio({"defects": [defect(cwe=cwe)]}))
+    assert rules[0].help_uri == "https://cwe.mitre.org/data/definitions/476.html"
+    assert results[0].properties == {"cwe": "CWE-476"}
+
+
+@pytest.mark.parametrize(
+    "defect_json",
+    [defect(cwe=None), {k: v for k, v in defect().items() if k != "cwe"}, defect(cwe=0), defect(cwe="0")],
+)
+def test_platformio_without_a_cwe_falls_back_to_the_tool_docs(defect_json):
+    # cppcheck writes cwe 0 for checks with no CWE assigned; CWE-0 does not exist.
+    rules, results = platformio.convert(pio({"defects": [defect_json]}))
+    assert rules[0].help_uri == platformio.INFORMATION_URI
+    assert results[0].properties == {}
+
+
+def test_platformio_clips_oversized_messages():
+    # Real cppcheck output can dump its whole preprocessor configuration into the
+    # message (the FastLED fixture carries a 12 KB one); GitHub caps rule description
+    # text at 1024 characters.
+    rules, results = platformio.convert(pio({"defects": [defect(message="x" * 5000)]}))
+    assert len(results[0].message) == 1024
+    assert results[0].message.endswith("... (truncated)")
+    assert len(rules[0].short_description) == 1024
+
+
+def test_platformio_short_messages_pass_through_unclipped():
+    _, results = platformio.convert(pio({"defects": [defect(message="x" * 1024)]}))
+    assert results[0].message == "x" * 1024
+
+
+def test_platformio_drops_unknown_line_and_column():
+    # 0 is what PlatformIO writes when the tool named no position, and SARIF is 1-based.
+    _, results = platformio.convert(pio({"defects": [defect(file="unknown", line=0, column=0)]}))
+    location = results[0].location
+    assert (location.uri, location.start_line, location.start_column) == ("unknown", None, None)
+
+
+def test_platformio_clean_project_has_no_findings():
+    assert platformio.convert(pio({"defects": []})) == ([], [])
+    assert platformio.convert("[]") == ([], [])
+    # An empty array names no tool, so it isn't enough to claim the input.
+    assert platformio.detect("[]") is False
+
+
+def test_platformio_one_rule_per_check_id():
+    defects = [defect(), defect(line=40, message="Uninitialized variable: count")]
+    rules, results = platformio.convert(pio({"defects": defects}))
+    assert [r.id for r in rules] == ["cppcheck:uninitvar"]
+    assert rules[0].short_description == "Uninitialized variable: total"
+    assert len(results) == 2
+
+
+def test_platformio_rejects_json_that_is_not_pio_check():
+    with pytest.raises(ValueError, match="JSON array"):
+        platformio.convert('{"dependencies": []}')
