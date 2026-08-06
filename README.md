@@ -55,7 +55,8 @@ and you want the job to carry on to the upload rather than stop at the scan. Eac
 page below gives the exact capture command for that tool, since the exit codes differ.
 
 [sarif-kit/demo](https://github.com/sarif-kit/demo) is a repository broken on purpose that
-runs all three tools this way, if you want to see the alerts before wiring anything up.
+runs every supported tool this way, if you want to see the alerts before wiring
+anything up.
 
 ## On your machine
 
@@ -115,11 +116,7 @@ Full reference: `man -l man/sarif-kit.1` from a clone.
 - MegaLinter and reviewdog want you to adopt their whole pipeline. sarif-kit is one command you drop into the CI you already run.
 - node-sarif-builder is a library for tool authors writing SARIF by hand. sarif-kit is the finished converter for people who just want a scanner's findings in the Security tab.
 
-## Status
-
-The converter core, the first three adapters, the CLI and the GitHub Action are done,
-covered by 124 tests with golden files for every adapter. From here the adapter order
-follows whatever people actually ask for, with ty and vulture the current front runners.
+## The quality bar
 
 Passing the schema is not what makes an adapter finished here. Every adapter is uploaded
 to a real repository and inspected in GitHub's Code Scanning UI, and if the alert does not
