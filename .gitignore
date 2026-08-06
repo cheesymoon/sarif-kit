@@ -15,3 +15,5 @@ build/
 # gate/scratch artifacts
 gate.sarif
 *.sarif.tmp
+docs/index.md
+site/

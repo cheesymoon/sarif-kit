@@ -17,10 +17,15 @@ sarif-kit = "sarif_kit.cli:main"
 [project.urls]
 Homepage = "https://github.com/sarif-kit/sarif-kit"
 Issues = "https://github.com/sarif-kit/sarif-kit/issues"
+Documentation = "https://sarif-kit.github.io/sarif-kit/"
 
 [dependency-groups]
 dev = [
     "pytest>=8.0",
+]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocs-meta-descriptions-plugin>=3.0",
 ]
 
 [build-system]

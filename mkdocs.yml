@@ -1,0 +1,44 @@
+site_name: sarif-kit
+site_url: https://sarif-kit.github.io/sarif-kit/
+site_description: Convert native output of scanners/linters that lack SARIF support into valid SARIF 2.1.0 for GitHub Code Scanning.
+
+repo_url: https://github.com/sarif-kit/sarif-kit
+repo_name: sarif-kit/sarif-kit
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: img/logo.svg
+  favicon: img/logo.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: amber
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: amber
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - pip-audit: pip-audit.md
+  - yamllint: yamllint.md
+  - codespell: codespell.md
+  - PlatformIO check: platformio.md
+
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - meta-descriptions

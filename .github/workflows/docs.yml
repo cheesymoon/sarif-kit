@@ -1,0 +1,63 @@
+# Publishes the existing docs/ directory plus a homepage generated from README.md.
+# The homepage is generated rather than committed so README stays the single source
+# of truth. Release commits restamp versions in README and docs, but they are pushed
+# with the workflow token, whose pushes emit no push event; the workflow_run trigger
+# is what redeploys the site after a release.
+name: Docs
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - docs/**
+      - overrides/**
+      - README.md
+      - mkdocs.yml
+      - .github/workflows/docs.yml
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
+    branches: [master]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: pages
+
+jobs:
+  deploy:
+    # A workflow_run firing means a release just finished; skip the rebuild when
+    # that release failed, since the stamped files never landed.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Install uv
+        uses: astral-sh/setup-uv@v9.0.0
+        with:
+          python-version: "3.12"
+      - name: Sync
+        run: uv sync --group docs
+      - name: Generate the homepage from the README
+        run: |
+          cp README.md docs/index.md
+          sed -i -E 's|https://github\.com/sarif-kit/sarif-kit/blob/master/docs/([a-z-]+\.md)|\1|g' docs/index.md
+      - name: Build the site
+        run: uv run mkdocs build --strict
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
