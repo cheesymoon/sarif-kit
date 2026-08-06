@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v0.2.0 (2026-08-06)
+
+### Features
+
+- Platformio check adapter
+  ([`0104cb9`](https://github.com/sarif-kit/sarif-kit/commit/0104cb99e0e996444af248cc35ad87384258364a))
+
+
 ## v0.1.1 (2026-08-05)
 
 ### Continuous Integration
