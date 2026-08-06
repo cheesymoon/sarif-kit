@@ -49,6 +49,10 @@ with a CWE keep it as a `cwe` property on the result. cppcheck reports CWE 0 for
 that have none assigned; sarif-kit drops it instead of linking to a CWE-0 page that
 does not exist.
 
+## What it looks like
+
+![A pio check finding rendered as a GitHub Code Scanning alert](img/platformio-alert.jpg)
+
 ## Full workflow example
 
 ```yaml
